@@ -29,7 +29,7 @@
                 <div class="flex items-center">
                     <a href="index.html" class="text-2xl font-bold tracking-tight transition-colors
                                               theme-sport:text-white theme-eco:text-gray-900">
-                        <span class="theme-sport:text-sport-primary theme-eco:text-eco-primary">CAR</span>EXPLORER
+                        <span class="theme-sport:text-sport-primary theme-eco:text-eco-primary">Nurburgring</span>GT
                     </a>
                 </div>
 
@@ -51,8 +51,8 @@
                         <span class="absolute top-1 left-1 w-6 h-6 rounded-full transition-transform duration-300 flex items-center justify-center text-xs
                                      theme-sport:translate-x-0 theme-sport:bg-sport-primary
                                      theme-eco:translate-x-8 theme-eco:bg-eco-primary">
-                            <span class="theme-sport:block theme-eco:hidden">🔥</span>
-                            <span class="theme-sport:hidden theme-eco:block">🌿</span>
+                            <span class="theme-sport:block theme-eco:hidden">❤️‍🔥🥹</span>
+                            <span class="theme-sport:hidden theme-eco:block">🌿🤕</span>
                         </span>
                     </button>
 
@@ -415,7 +415,7 @@
                 <p class="text-sm transition-colors
                           theme-sport:text-gray-400
                           theme-eco:text-gray-600">
-                    &copy; 2025 Car Explorer. Built with passion for automotive excellence.
+                    &copy; 2025 Car Explorer.
                 </p>
             </div>
         </div>
@@ -523,7 +523,7 @@
 
             // Update main image
             const carImage = document.getElementById('carImage');
-            carImage.src = car.image;
+            carImage.src = `img/${car.image}`;
             carImage.alt = car.name;
 
             // Update category badge
@@ -569,7 +569,7 @@
             if (!currentCar) return;
 
             const isFavorite = UI.isFavorite(currentCar.id);
-            favoriteIcon.textContent = isFavorite ? '❤️' : '🤍';
+            favoriteIcon.textContent = isFavorite ? '❤️‍🔥' : '🤍';
             favoriteText.textContent = isFavorite ? 'Remove from Favorites' : 'Add to Favorites';
         }
 

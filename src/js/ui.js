@@ -11,7 +11,7 @@ export const UI = {
      */
     createCarCard(car) {
         const isFavorite = this.isFavorite(car.id);
-        const heartIcon = isFavorite ? '❤️' : '🤍';
+        const heartIcon = isFavorite ? '❤️‍🔥' : '🤍';
         
         return `
             <div class="car-card car-card-clickable" data-car-id="${car.id}">
@@ -20,7 +20,7 @@ export const UI = {
                          alt="${car.name}" 
                          class="car-card__image"
                          loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1283&auto=format&fit=crop'">
+                         onerror="this.src='img/placeholder.png'">
                     
                     <!-- Category Badge -->
                     <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider backdrop-blur-sm
@@ -40,7 +40,9 @@ export const UI = {
                 </div>
 
                 <div class="car-card__content">
-                    <div class="car-card__meta">
+                    <div class="car-card__meta 
+                                theme-sport:text-white
+                                theme-eco:text-gray-600">
                         ${car.brand} • ${car.year}
                     </div>
                     <h3 class="car-card__title">
@@ -49,7 +51,7 @@ export const UI = {
                     
                     <!-- Specs -->
                     <div class="flex items-center gap-4 mt-3 text-xs transition-colors
-                                theme-sport:text-gray-400
+                                theme-sport:text-white
                                 theme-eco:text-gray-600">
                         <span>⚡ ${car.horsepower} HP</span>
                         <span>🚀 ${car.acceleration}s</span>
@@ -270,7 +272,7 @@ export const UI = {
                 
                 // Update button icon
                 const icon = button.querySelector('span');
-                icon.textContent = isFavorite ? '❤️' : '🤍';
+                icon.textContent = isFavorite ? '❤️‍🔥' : '🤍';
                 
                 // Add animation
                 button.classList.add('scale-125');

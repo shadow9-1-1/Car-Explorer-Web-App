@@ -11,7 +11,7 @@
     "acceleration": 6.7,
     "fuelType": "Hybrid",
     "transmission": "CVT",
-    "image": "https://images.unsplash.com/photo-1616788874916-8b8f9fe8532c?q=80&w=1170&auto=format&fit=crop",
+    "image": "1.png",
     "description": "Efficient plug-in hybrid with advanced fuel economy and modern styling."
   },
   {
@@ -26,7 +26,7 @@
     "acceleration": 6.8,
     "fuelType": "Hybrid",
     "transmission": "e-CVT",
-    "image": "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1170&auto=format&fit=crop",
+    "image": "2.png",
     "description": "Refined sedan offering comfort, efficiency, and modern technology."
   },
   {
@@ -41,7 +41,7 @@
     "acceleration": 7.5,
     "fuelType": "Hybrid",
     "transmission": "CVT",
-    "image": "https://images.unsplash.com/photo-1549924231-f129b911e442?q=80&w=1170&auto=format&fit=crop",
+    "image": "3.png",
     "description": "A balanced hybrid sedan with top-tier reliability and fuel economy."
   },
   {
@@ -56,7 +56,7 @@
     "acceleration": 8.9,
     "fuelType": "Hybrid",
     "transmission": "6-speed automatic",
-    "image": "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?q=80&w=1170&auto=format&fit=crop",
+    "image": "4.png",
     "description": "Eco-friendly hybrid with sleek styling and exceptional efficiency."
   },
   {
@@ -71,7 +71,7 @@
     "acceleration": 7.7,
     "fuelType": "Hybrid",
     "transmission": "CVT",
-    "image": "https://images.unsplash.com/photo-1599699517752-4f19f610d5c9?q=80&w=1170&auto=format&fit=crop",
+    "image": "5.png",
     "description": "Compact hybrid SUV with spacious interior and great efficiency."
   },
   {
@@ -86,7 +86,7 @@
     "acceleration": 7.9,
     "fuelType": "Hybrid",
     "transmission": "CVT",
-    "image": "https://images.unsplash.com/photo-1616566220978-bf6e9ac04f8b?q=80&w=1171&auto=format&fit=crop",
+    "image": "6.png",
     "description": "Premium hybrid SUV with smooth performance and advanced comfort."
   },
   {
@@ -101,7 +101,7 @@
     "acceleration": 8.2,
     "fuelType": "Hybrid",
     "transmission": "6-speed automatic",
-    "image": "https://images.unsplash.com/photo-1587270615044-4793de33f3f3?q=80&w=1170&auto=format&fit=crop",
+    "image": "7.png",
     "description": "Compact and efficient hybrid crossover designed for urban life."
   },
   {
@@ -116,7 +116,7 @@
     "acceleration": 8.0,
     "fuelType": "Hybrid",
     "transmission": "CVT",
-    "image": "https://images.unsplash.com/photo-1624570919214-c563e5efdcab?q=80&w=1170&auto=format&fit=crop",
+    "image": "8.png",
     "description": "A versatile hybrid SUV delivering efficiency and practicality."
   },
 
@@ -132,7 +132,7 @@
     "acceleration": 4.4,
     "fuelType": "Gasoline",
     "transmission": "9-speed automatic",
-    "image": "https://images.unsplash.com/photo-1617788112151-7dc86d51a0d1?q=80&w=1170&auto=format&fit=crop",
+    "image": "9.png",
     "description": "Flagship luxury sedan blending comfort, prestige, and innovation."
   },
   {
@@ -147,7 +147,7 @@
     "acceleration": 4.1,
     "fuelType": "Hybrid",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1630179756360-59f1f85f113e?q=80&w=1170&auto=format&fit=crop",
+    "image": "10.png",
     "description": "Executive luxury sedan with cutting-edge technology and comfort."
   },
   {
@@ -162,7 +162,7 @@
     "acceleration": 5.6,
     "fuelType": "Gasoline",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1164&auto=format&fit=crop",
+    "image": "11.png",
     "description": "Luxury limousine offering comfort, refinement, and technology."
   },
   {
@@ -177,7 +177,7 @@
     "acceleration": 4.9,
     "fuelType": "Gasoline",
     "transmission": "10-speed automatic",
-    "image": "https://images.unsplash.com/photo-1570125909517-0947cb7a5d36?q=80&w=1170&auto=format&fit=crop",
+    "image": "12.png",
     "description": "Premium full-size luxury sedan with smooth ride quality."
   },
   {
@@ -192,7 +192,7 @@
     "acceleration": 5.8,
     "fuelType": "Gasoline",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1597009279867-51a8f9643877?q=80&w=1170&auto=format&fit=crop",
+    "image": "13.png",
     "description": "British luxury sedan blending sportiness and elegance."
   },
   {
@@ -207,7 +207,7 @@
     "acceleration": 5.1,
     "fuelType": "Gasoline",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1616521418628-bbf715fad725?q=80&w=1170&auto=format&fit=crop",
+    "image": "14.png",
     "description": "Premium flagship luxury sedan with elegant design."
   },
   {
@@ -222,7 +222,7 @@
     "acceleration": 6.2,
     "fuelType": "Hybrid",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1618422605058-e1c1fc3621d2?q=80&w=1170&auto=format&fit=crop",
+    "image": "15.png",
     "description": "Elegant Scandinavian luxury sedan with hybrid efficiency."
   },
   {
@@ -237,7 +237,7 @@
     "acceleration": 5.8,
     "fuelType": "Gasoline",
     "transmission": "10-speed automatic",
-    "image": "https://images.unsplash.com/photo-1606925797303-1b414e5cf72d?q=80&w=1170&auto=format&fit=crop",
+    "image": "16.png",
     "description": "Full-size luxury sedan offering premium features and comfort."
   },
 
@@ -253,7 +253,7 @@
     "acceleration": 4.0,
     "fuelType": "Gasoline",
     "transmission": "8-speed PDK",
-    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1170&auto=format&fit=crop",
+    "image": "17.png",
     "description": "Iconic sports car offering precision, balance, and driving thrills."
   },
   {
@@ -268,7 +268,7 @@
     "acceleration": 2.9,
     "fuelType": "Gasoline",
     "transmission": "8-speed DCT",
-    "image": "https://images.unsplash.com/photo-1617957829137-5afe9bcb35c7?q=80&w=1170&auto=format&fit=crop",
+    "image": "18.png",
     "description": "Mid-engine American supercar with world-class performance."
   },
   {
@@ -283,7 +283,7 @@
     "acceleration": 2.9,
     "fuelType": "Gasoline",
     "transmission": "6-speed DCT",
-    "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1170&auto=format&fit=crop",
+    "image": "19.png",
     "description": "Legendary Japanese supercar known as Godzilla."
   },
   {
@@ -298,7 +298,7 @@
     "acceleration": 4.3,
     "fuelType": "Gasoline",
     "transmission": "6-speed manual",
-    "image": "https://images.unsplash.com/photo-1502877338535-7665e2d4f42f?q=80&w=1170&auto=format&fit=crop",
+    "image": "20.png",
     "description": "American muscle icon delivering raw power and excitement."
   },
   {
@@ -313,7 +313,7 @@
     "acceleration": 3.9,
     "fuelType": "Gasoline",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1589324914281-7436e8b657c5?q=80&w=1170&auto=format&fit=crop",
+    "image": "21.png",
     "description": "Modern sports coupe with agile handling and a powerful turbo engine."
   },
   {
@@ -328,7 +328,7 @@
     "acceleration": 2.9,
     "fuelType": "Gasoline",
     "transmission": "7-speed DCT",
-    "image": "https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?q=80&w=1170&auto=format&fit=crop",
+    "image": "22.png",
     "description": "High-revving V10 supercar with stunning performance."
   },
   {
@@ -343,7 +343,7 @@
     "acceleration": 3.5,
     "fuelType": "Gasoline",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1575734957630-380af753351d?q=80&w=1170&auto=format&fit=crop",
+    "image": "23.png",
     "description": "Supercharged muscle car delivering outrageous performance."
   },
   {
@@ -358,7 +358,7 @@
     "acceleration": 3.0,
     "fuelType": "Hybrid",
     "transmission": "8-speed DCT",
-    "image": "https://images.unsplash.com/photo-1617654112368-307921291f42?q=80&w=1170&auto=format&fit=crop",
+    "image": "24.png",
     "description": "Hybrid supercar combining electrification and extreme agility."
   },
 
@@ -374,7 +374,7 @@
     "acceleration": 6.7,
     "fuelType": "Gasoline",
     "transmission": "10-speed automatic",
-    "image": "https://images.unsplash.com/photo-1606213721180-dc0731a1b77d?q=80&w=1170&auto=format&fit=crop",
+    "image": "25.png",
     "description": "Legendary off-road SUV with unmatched durability."
   },
   {
@@ -389,7 +389,7 @@
     "acceleration": 7.5,
     "fuelType": "Gasoline",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1644681357982-12369c21c07d?q=80&w=1170&auto=format&fit=crop",
+    "image": "26.png",
     "description": "Capable and luxurious SUV built for everyday adventure."
   },
   {
@@ -404,7 +404,7 @@
     "acceleration": 4.6,
     "fuelType": "Gasoline",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1606220838315-056192d5e927?q=80&w=1170&auto=format&fit=crop",
+    "image": "27.png",
     "description": "Luxury performance SUV with outstanding handling."
   },
   {
@@ -419,7 +419,7 @@
     "acceleration": 5.5,
     "fuelType": "Gasoline",
     "transmission": "9-speed automatic",
-    "image": "https://images.unsplash.com/photo-1604594849809-626c46ac33b4?q=80&w=1170&auto=format&fit=crop",
+    "image": "28.png",
     "description": "Premium SUV combining comfort, technology, and capability."
   },
   {
@@ -434,7 +434,7 @@
     "acceleration": 7.2,
     "fuelType": "Gasoline",
     "transmission": "8-speed automatic",
-    "image": "https://images.unsplash.com/photo-1599919440385-e887ca5caeaa?q=80&w=1170&auto=format&fit=crop",
+    "image": "29.png",
     "description": "Spacious family SUV with premium features at a great value."
   },
   {
@@ -449,7 +449,7 @@
     "acceleration": 8.3,
     "fuelType": "Hybrid",
     "transmission": "CVT",
-    "image": "https://images.unsplash.com/photo-1563720360172-67b8f3dce741?q=80&w=1170&auto=format&fit=crop",
+    "image": "30.png",
     "description": "Reliable compact SUV delivering practicality and efficiency."
   },
   {
@@ -464,7 +464,7 @@
     "acceleration": 6.8,
     "fuelType": "Gasoline",
     "transmission": "10-speed automatic",
-    "image": "https://images.unsplash.com/photo-1644681078608-3f2e9ea494c5?q=80&w=1170&auto=format&fit=crop",
+    "image": "31.png",
     "description": "Midsize SUV offering power, comfort, and ample space."
   },
   {
@@ -479,7 +479,7 @@
     "acceleration": 8.8,
     "fuelType": "Hybrid",
     "transmission": "6-speed automatic",
-    "image": "https://images.unsplash.com/photo-1621993202323-f438eec934ff?q=80&w=1170&auto=format&fit=crop",
+    "image": "32.png",
     "description": "Stylish compact SUV with hybrid options and advanced safety."
   },
 
@@ -495,7 +495,7 @@
     "acceleration": 3.1,
     "fuelType": "Electric",
     "transmission": "Single-speed",
-    "image": "https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1171&auto=format&fit=crop",
+    "image": "33.png",
     "description": "Premium electric sedan with cutting-edge technology and range."
   },
   {
@@ -510,7 +510,7 @@
     "acceleration": 3.5,
     "fuelType": "Electric",
     "transmission": "Single-speed",
-    "image": "https://images.unsplash.com/photo-1580664668893-ea1a3aea9991?q=80&w=1170&auto=format&fit=crop",
+    "image": "34.png",
     "description": "Affordable electric sedan with impressive performance and efficiency."
   },
   {
@@ -525,7 +525,7 @@
     "acceleration": 4.0,
     "fuelType": "Electric",
     "transmission": "2-speed automatic",
-    "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=1170&auto=format&fit=crop",
+    "image": "35.png",
     "description": "Pure-electric sports sedan with thrilling performance."
   },
   {
@@ -540,7 +540,7 @@
     "acceleration": 4.8,
     "fuelType": "Electric",
     "transmission": "Single-speed",
-    "image": "https://images.unsplash.com/photo-1620891549027-942fdc95d3f5?q=80&w=1172&auto=format&fit=crop",
+    "image": "36.png",
     "description": "Retro-futuristic EV with ultra-fast charging and long range."
   },
   {
@@ -555,7 +555,7 @@
     "acceleration": 3.4,
     "fuelType": "Electric",
     "transmission": "Single-speed",
-    "image": "https://images.unsplash.com/photo-1620145644089-d1e4fd2509ab?q=80&w=1170&auto=format&fit=crop",
+    "image": "37.png",
     "description": "High-performance electric crossover with bold styling."
   },
   {
@@ -570,7 +570,7 @@
     "acceleration": 5.5,
     "fuelType": "Electric",
     "transmission": "Single-speed",
-    "image": "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=1170&auto=format&fit=crop",
+    "image": "38.png",
     "description": "Electric sports sedan blending BMW dynamics with EV technology."
   },
   {
@@ -585,7 +585,7 @@
     "acceleration": 4.1,
     "fuelType": "Electric",
     "transmission": "Single-speed",
-    "image": "https://images.unsplash.com/photo-1618843479619-f2d3b5c81b92?q=80&w=1170&auto=format&fit=crop",
+    "image": "39.png",
     "description": "Luxury electric flagship sedan with advanced features."
   },
   {
@@ -600,7 +600,7 @@
     "acceleration": 7.4,
     "fuelType": "Electric",
     "transmission": "Single-speed",
-    "image": "https://images.unsplash.com/photo-1616671289835-7936dc7d845d?q=80&w=1170&auto=format&fit=crop",
+    "image": "40.png",
     "description": "Affordable electric hatchback with reliable range and efficiency."
   }
 ]

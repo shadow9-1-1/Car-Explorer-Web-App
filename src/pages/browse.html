@@ -192,14 +192,14 @@
                                        id="minPrice" 
                                        min="0" 
                                        max="500000" 
-                                       step="10000" 
+                                       step="1" 
                                        value="0"
                                        class="w-full accent-sport-primary theme-eco:accent-eco-primary">
                                 <input type="range" 
                                        id="maxPrice" 
                                        min="0" 
                                        max="500000" 
-                                       step="10000" 
+                                       step="1" 
                                        value="500000"
                                        class="w-full accent-sport-primary theme-eco:accent-eco-primary">
                             </div>
@@ -217,14 +217,14 @@
                                        id="minHorsepower" 
                                        min="0" 
                                        max="1500" 
-                                       step="50" 
+                                       step="1" 
                                        value="0"
                                        class="w-full accent-sport-primary theme-eco:accent-eco-primary">
                                 <input type="range" 
                                        id="maxHorsepower" 
                                        min="0" 
                                        max="1500" 
-                                       step="50" 
+                                       step="1" 
                                        value="1500"
                                        class="w-full accent-sport-primary theme-eco:accent-eco-primary">
                             </div>
@@ -531,6 +531,7 @@
             background: #e0e0e0;
         }
 
+        /* Webkit browsers (Chrome, Safari, Edge) */
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -538,14 +539,45 @@
             height: 18px;
             border-radius: 50%;
             cursor: pointer;
+            background: #d5001c;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
+        .theme-eco input[type="range"]::-webkit-slider-thumb {
+            background: #00b74a;
+        }
+
+        /* Firefox */
         input[type="range"]::-moz-range-thumb {
             width: 18px;
             height: 18px;
             border-radius: 50%;
             cursor: pointer;
-            border: none;
+            border: 2px solid #fff;
+            background: #d5001c;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-eco input[type="range"]::-moz-range-thumb {
+            background: #00b74a;
+        }
+
+        /* Focus states */
+        input[type="range"]:focus::-webkit-slider-thumb {
+            box-shadow: 0 0 0 3px rgba(213, 0, 28, 0.3);
+        }
+
+        .theme-eco input[type="range"]:focus::-webkit-slider-thumb {
+            box-shadow: 0 0 0 3px rgba(0, 183, 74, 0.3);
+        }
+
+        input[type="range"]:focus::-moz-range-thumb {
+            box-shadow: 0 0 0 3px rgba(213, 0, 28, 0.3);
+        }
+
+        .theme-eco input[type="range"]:focus::-moz-range-thumb {
+            box-shadow: 0 0 0 3px rgba(0, 183, 74, 0.3);
         }
     </style>
 </body>

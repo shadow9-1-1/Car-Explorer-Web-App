@@ -14,9 +14,9 @@ export const UI = {
         const heartIcon = isFavorite ? '❤️' : '🤍';
         
         return `
-            <div class="car-card" data-car-id="${car.id}">
+            <div class="car-card car-card-clickable" data-car-id="${car.id}">
                 <div class="relative overflow-hidden">
-                    <img src="${car.image}" 
+                    <img src="img/${car.image}" 
                          alt="${car.name}" 
                          class="car-card__image"
                          loading="lazy"
@@ -30,7 +30,7 @@ export const UI = {
                     </div>
 
                     <!-- Favorite Button -->
-                    <button class="favorite-btn absolute top-4 right-4 w-10 h-10 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110
+                    <button class="favorite-btn absolute top-4 right-4 w-10 h-10 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110 z-10
                                    theme-sport:bg-black/60 theme-sport:hover:bg-sport-primary
                                    theme-eco:bg-white/60 theme-eco:hover:bg-eco-primary"
                             data-car-id="${car.id}"
@@ -62,7 +62,7 @@ export const UI = {
 
                     <div class="car-card__cta">
                         <a href="details.html?id=${car.id}" 
-                           class="button-action button-action--primary button-action--sm w-full">
+                           class="button-action button-action--primary button-action--sm w-full inline-block text-center">
                             View Details
                         </a>
                     </div>
@@ -275,6 +275,25 @@ export const UI = {
                 // Add animation
                 button.classList.add('scale-125');
                 setTimeout(() => button.classList.remove('scale-125'), 200);
+            });
+        });
+
+        // Make card clickable (excluding favorite button clicks)
+        const cards = document.querySelectorAll('.car-card-clickable');
+        cards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', (e) => {
+                // Don't navigate if clicking favorite button
+                if (e.target.closest('.favorite-btn')) {
+                    return;
+                }
+                // Don't navigate if clicking the "View Details" button
+                if (e.target.closest('.car-card__cta a')) {
+                    return;
+                }
+                
+                const carId = card.dataset.carId;
+                window.location.href = `details.html?id=${carId}`;
             });
         });
     },

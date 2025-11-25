@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-sport">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details | Car Explorer</title>
+    <meta name="description" content="View detailed information about luxury and performance vehicles">
+    
+    <!-- Tailwind CSS -->
+    <link href="../css/output.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased transition-colors duration-300
+             theme-sport:bg-sport-dark
+             theme-eco:bg-eco-light">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-navbar backdrop-blur-navbar transition-all duration-300
+                theme-sport:bg-black/80 theme-sport:border-b theme-sport:border-white/10
+                theme-eco:bg-white/90 theme-eco:border-b theme-eco:border-gray-200">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between h-16 lg:h-18 px-6 lg:px-12">
+                
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold tracking-tight transition-colors
+                                              theme-sport:text-white theme-eco:text-gray-900">
+                        <span class="theme-sport:text-sport-primary theme-eco:text-eco-primary">CAR</span>EXPLORER
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-8 lg:gap-12">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="browse.html" class="nav-link">Browse</a>
+                    <a href="compare.html" class="nav-link">Compare</a>
+                    <a href="favorites.html" class="nav-link">Favorites</a>
+                </div>
+
+                <!-- Theme Toggle -->
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle" 
+                            class="relative w-16 h-8 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 
+                                   theme-sport:bg-sport-card theme-sport:focus:ring-sport-primary
+                                   theme-eco:bg-eco-border theme-eco:focus:ring-eco-primary"
+                            aria-label="Toggle theme">
+                        <span class="absolute top-1 left-1 w-6 h-6 rounded-full transition-transform duration-300 flex items-center justify-center text-xs
+                                     theme-sport:translate-x-0 theme-sport:bg-sport-primary
+                                     theme-eco:translate-x-8 theme-eco:bg-eco-primary">
+                            <span class="theme-sport:block theme-eco:hidden">🔥</span>
+                            <span class="theme-sport:hidden theme-eco:block">🌿</span>
+                        </span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg transition-colors
+                                                       theme-sport:text-white theme-sport:hover:bg-sport-card
+                                                       theme-eco:text-gray-900 theme-eco:hover:bg-eco-hover">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden border-t transition-colors
+                                        theme-sport:border-white/10 theme-sport:bg-sport-dark
+                                        theme-eco:border-gray-200 theme-eco:bg-white">
+                <div class="px-6 py-4 space-y-3">
+                    <a href="index.html" class="block nav-link">Home</a>
+                    <a href="browse.html" class="block nav-link">Browse</a>
+                    <a href="compare.html" class="block nav-link">Compare</a>
+                    <a href="favorites.html" class="block nav-link">Favorites</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            <div class="animate-pulse">
+                <!-- Breadcrumb Skeleton -->
+                <div class="h-4 rounded w-64 mb-8 transition-colors
+                            theme-sport:bg-sport-card
+                            theme-eco:bg-gray-200"></div>
+                
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Image Skeleton -->
+                    <div class="aspect-[4/3] rounded-lg transition-colors
+                                theme-sport:bg-sport-card
+                                theme-eco:bg-gray-200"></div>
+                    
+                    <!-- Details Skeleton -->
+                    <div class="space-y-6">
+                        <div class="h-8 rounded w-3/4 transition-colors
+                                    theme-sport:bg-sport-card
+                                    theme-eco:bg-gray-200"></div>
+                        <div class="h-6 rounded w-1/2 transition-colors
+                                    theme-sport:bg-sport-card
+                                    theme-eco:bg-gray-200"></div>
+                        <div class="h-12 rounded w-full transition-colors
+                                    theme-sport:bg-sport-card
+                                    theme-eco:bg-gray-200"></div>
+                        <div class="space-y-3">
+                            <div class="h-4 rounded w-full transition-colors
+                                        theme-sport:bg-sport-card
+                                        theme-eco:bg-gray-200"></div>
+                            <div class="h-4 rounded w-full transition-colors
+                                        theme-sport:bg-sport-card
+                                        theme-eco:bg-gray-200"></div>
+                            <div class="h-4 rounded w-full transition-colors
+                                        theme-sport:bg-sport-card
+                                        theme-eco:bg-gray-200"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="hidden pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            
+            <!-- Breadcrumb -->
+            <nav class="mb-8 flex items-center gap-2 text-sm transition-colors
+                        theme-sport:text-gray-400
+                        theme-eco:text-gray-600">
+                <a href="index.html" class="hover:underline transition-colors
+                                             theme-sport:hover:text-white
+                                             theme-eco:hover:text-gray-900">Home</a>
+                <span>/</span>
+                <a href="browse.html" class="hover:underline transition-colors
+                                              theme-sport:hover:text-white
+                                              theme-eco:hover:text-gray-900">Browse</a>
+                <span>/</span>
+                <span id="breadcrumbName" class="transition-colors
+                                                 theme-sport:text-white
+                                                 theme-eco:text-gray-900">Loading...</span>
+            </nav>
+
+            <!-- Car Details Grid -->
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                
+                <!-- Left Column - Image -->
+                <div class="space-y-4">
+                    <div class="relative overflow-hidden rounded-lg shadow-luxury group">
+                        <img id="carImage" 
+                             src="" 
+                             alt="" 
+                             class="w-full aspect-[4/3] object-cover transition-transform duration-600 group-hover:scale-105">
+                        
+                        <!-- Category Badge -->
+                        <div id="categoryBadge" 
+                             class="absolute top-6 left-6 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider backdrop-blur-sm
+                                    theme-sport:bg-sport-primary/90 theme-sport:text-white
+                                    theme-eco:bg-eco-primary/90 theme-eco:text-white">
+                        </div>
+                    </div>
+
+                    <!-- Back to Browse Button -->
+                    <a href="browse.html" 
+                       class="button-action button-action--secondary button-action--md w-full inline-flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Back to Browse
+                    </a>
+                </div>
+
+                <!-- Right Column - Details -->
+                <div class="space-y-6">
+                    
+                    <!-- Title Section -->
+                    <div>
+                        <p id="carBrand" class="text-sm font-medium uppercase tracking-wider mb-2 transition-colors
+                                                theme-sport:text-gray-400
+                                                theme-eco:text-gray-600"></p>
+                        <h1 id="carName" class="text-4xl lg:text-5xl font-bold mb-4 transition-colors
+                                                theme-sport:text-white
+                                                theme-eco:text-gray-900"></h1>
+                        <p id="carDescription" class="text-lg transition-colors
+                                                      theme-sport:text-gray-300
+                                                      theme-eco:text-gray-700"></p>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="py-6 border-y transition-colors
+                                theme-sport:border-sport-border-subtle
+                                theme-eco:border-eco-border">
+                        <p class="text-sm font-medium uppercase tracking-wider mb-2 transition-colors
+                                  theme-sport:text-gray-400
+                                  theme-eco:text-gray-600">Price</p>
+                        <p id="carPrice" class="text-4xl font-bold transition-colors
+                                                theme-sport:text-sport-primary
+                                                theme-eco:text-eco-primary"></p>
+                    </div>
+
+                    <!-- Key Specs Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-lg transition-colors
+                                    theme-sport:bg-sport-card
+                                    theme-eco:bg-white theme-eco:border theme-eco:border-eco-border">
+                            <p class="text-xs font-medium uppercase tracking-wider mb-1 transition-colors
+                                      theme-sport:text-gray-400
+                                      theme-eco:text-gray-600">Horsepower</p>
+                            <p id="carHorsepower" class="text-2xl font-bold transition-colors
+                                                         theme-sport:text-white
+                                                         theme-eco:text-gray-900"></p>
+                        </div>
+                        <div class="p-4 rounded-lg transition-colors
+                                    theme-sport:bg-sport-card
+                                    theme-eco:bg-white theme-eco:border theme-eco:border-eco-border">
+                            <p class="text-xs font-medium uppercase tracking-wider mb-1 transition-colors
+                                      theme-sport:text-gray-400
+                                      theme-eco:text-gray-600">0-60 mph</p>
+                            <p id="carAcceleration" class="text-2xl font-bold transition-colors
+                                                           theme-sport:text-white
+                                                           theme-eco:text-gray-900"></p>
+                        </div>
+                        <div class="p-4 rounded-lg transition-colors
+                                    theme-sport:bg-sport-card
+                                    theme-eco:bg-white theme-eco:border theme-eco:border-eco-border">
+                            <p class="text-xs font-medium uppercase tracking-wider mb-1 transition-colors
+                                      theme-sport:text-gray-400
+                                      theme-eco:text-gray-600">Top Speed</p>
+                            <p id="carTopSpeed" class="text-2xl font-bold transition-colors
+                                                       theme-sport:text-white
+                                                       theme-eco:text-gray-900"></p>
+                        </div>
+                        <div class="p-4 rounded-lg transition-colors
+                                    theme-sport:bg-sport-card
+                                    theme-eco:bg-white theme-eco:border theme-eco:border-eco-border">
+                            <p class="text-xs font-medium uppercase tracking-wider mb-1 transition-colors
+                                      theme-sport:text-gray-400
+                                      theme-eco:text-gray-600">Year</p>
+                            <p id="carYear" class="text-2xl font-bold transition-colors
+                                                   theme-sport:text-white
+                                                   theme-eco:text-gray-900"></p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <button id="favoriteBtn" 
+                                class="button-action button-action--primary button-action--lg flex-1 flex items-center justify-center gap-2">
+                            <span id="favoriteIcon">🤍</span>
+                            <span id="favoriteText">Add to Favorites</span>
+                        </button>
+                        <a href="compare.html" 
+                           class="button-action button-action--secondary button-action--lg flex-1 flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                            Compare
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Specifications -->
+            <div class="mt-16">
+                <h2 class="text-3xl font-bold mb-8 transition-colors
+                           theme-sport:text-white
+                           theme-eco:text-gray-900">
+                    Specifications
+                </h2>
+                
+                <div class="rounded-lg overflow-hidden transition-colors
+                            theme-sport:bg-sport-card theme-sport:border theme-sport:border-sport-border-subtle
+                            theme-eco:bg-white theme-eco:border theme-eco:border-eco-border">
+                    <div class="divide-y transition-colors
+                                theme-sport:divide-sport-border-subtle
+                                theme-eco:divide-eco-border">
+                        
+                        <div class="grid grid-cols-2 gap-4 p-4 lg:p-6 transition-colors
+                                    theme-sport:hover:bg-sport-hover
+                                    theme-eco:hover:bg-eco-hover">
+                            <span class="font-medium uppercase text-sm tracking-wider transition-colors
+                                         theme-sport:text-gray-400
+                                         theme-eco:text-gray-600">Brand</span>
+                            <span id="specBrand" class="font-mono transition-colors
+                                                        theme-sport:text-white
+                                                        theme-eco:text-gray-900"></span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 p-4 lg:p-6 transition-colors
+                                    theme-sport:hover:bg-sport-hover
+                                    theme-eco:hover:bg-eco-hover">
+                            <span class="font-medium uppercase text-sm tracking-wider transition-colors
+                                         theme-sport:text-gray-400
+                                         theme-eco:text-gray-600">Model Year</span>
+                            <span id="specYear" class="font-mono transition-colors
+                                                       theme-sport:text-white
+                                                       theme-eco:text-gray-900"></span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 p-4 lg:p-6 transition-colors
+                                    theme-sport:hover:bg-sport-hover
+                                    theme-eco:hover:bg-eco-hover">
+                            <span class="font-medium uppercase text-sm tracking-wider transition-colors
+                                         theme-sport:text-gray-400
+                                         theme-eco:text-gray-600">Category</span>
+                            <span id="specCategory" class="font-mono capitalize transition-colors
+                                                           theme-sport:text-white
+                                                           theme-eco:text-gray-900"></span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 p-4 lg:p-6 transition-colors
+                                    theme-sport:hover:bg-sport-hover
+                                    theme-eco:hover:bg-eco-hover">
+                            <span class="font-medium uppercase text-sm tracking-wider transition-colors
+                                         theme-sport:text-gray-400
+                                         theme-eco:text-gray-600">Fuel Type</span>
+                            <span id="specFuelType" class="font-mono transition-colors
+                                                           theme-sport:text-white
+                                                           theme-eco:text-gray-900"></span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 p-4 lg:p-6 transition-colors
+                                    theme-sport:hover:bg-sport-hover
+                                    theme-eco:hover:bg-eco-hover">
+                            <span class="font-medium uppercase text-sm tracking-wider transition-colors
+                                         theme-sport:text-gray-400
+                                         theme-eco:text-gray-600">Transmission</span>
+                            <span id="specTransmission" class="font-mono transition-colors
+                                                               theme-sport:text-white
+                                                               theme-eco:text-gray-900"></span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 p-4 lg:p-6 transition-colors
+                                    theme-sport:hover:bg-sport-hover
+                                    theme-eco:hover:bg-eco-hover">
+                            <span class="font-medium uppercase text-sm tracking-wider transition-colors
+                                         theme-sport:text-gray-400
+                                         theme-eco:text-gray-600">Horsepower</span>
+                            <span id="specHorsepower" class="font-mono transition-colors
+                                                             theme-sport:text-white
+                                                             theme-eco:text-gray-900"></span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 p-4 lg:p-6 transition-colors
+                                    theme-sport:hover:bg-sport-hover
+                                    theme-eco:hover:bg-eco-hover">
+                            <span class="font-medium uppercase text-sm tracking-wider transition-colors
+                                         theme-sport:text-gray-400
+                                         theme-eco:text-gray-600">0-60 MPH</span>
+                            <span id="specAcceleration" class="font-mono transition-colors
+                                                               theme-sport:text-white
+                                                               theme-eco:text-gray-900"></span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 p-4 lg:p-6 transition-colors
+                                    theme-sport:hover:bg-sport-hover
+                                    theme-eco:hover:bg-eco-hover">
+                            <span class="font-medium uppercase text-sm tracking-wider transition-colors
+                                         theme-sport:text-gray-400
+                                         theme-eco:text-gray-600">Top Speed</span>
+                            <span id="specTopSpeed" class="font-mono transition-colors
+                                                           theme-sport:text-white
+                                                           theme-eco:text-gray-900"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Cars Section -->
+            <div class="mt-16">
+                <h2 class="text-3xl font-bold mb-8 transition-colors
+                           theme-sport:text-white
+                           theme-eco:text-gray-900">
+                    Similar Vehicles
+                </h2>
+                <div id="relatedCars" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Related cars will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Error State -->
+    <div id="errorState" class="hidden pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col items-center justify-center py-20 text-center">
+                <div class="text-6xl mb-4">⚠️</div>
+                <h2 class="text-3xl font-bold mb-4 transition-colors
+                           theme-sport:text-white
+                           theme-eco:text-gray-900">
+                    Car Not Found
+                </h2>
+                <p class="text-lg mb-8 transition-colors
+                          theme-sport:text-gray-400
+                          theme-eco:text-gray-600">
+                    The vehicle you're looking for doesn't exist or has been removed.
+                </p>
+                <a href="browse.html" class="button-action button-action--primary button-action--lg">
+                    Browse All Cars
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t transition-colors duration-300
+                   theme-sport:bg-black theme-sport:border-white/10
+                   theme-eco:bg-white theme-eco:border-eco-border">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <p class="text-sm transition-colors
+                          theme-sport:text-gray-400
+                          theme-eco:text-gray-600">
+                    &copy; 2025 Car Explorer. Built with passion for automotive excellence.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme Management
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const THEME_KEY = 'carExplorerTheme';
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'sport';
+            applyTheme(savedTheme);
+        }
+
+        function applyTheme(theme) {
+            html.classList.remove('theme-sport', 'theme-eco');
+            html.classList.add(`theme-${theme}`);
+            localStorage.setItem(THEME_KEY, theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = html.classList.contains('theme-sport') ? 'sport' : 'eco';
+            const newTheme = currentTheme === 'sport' ? 'eco' : 'sport';
+            applyTheme(newTheme);
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        loadTheme();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- Main App Script (Module) -->
+    <script type="module">
+        import { API } from '../js/api.js';
+        import { UI } from '../js/ui.js';
+
+        // DOM Elements
+        const loadingState = document.getElementById('loadingState');
+        const mainContent = document.getElementById('mainContent');
+        const errorState = document.getElementById('errorState');
+        const favoriteBtn = document.getElementById('favoriteBtn');
+        const favoriteIcon = document.getElementById('favoriteIcon');
+        const favoriteText = document.getElementById('favoriteText');
+        const relatedCarsContainer = document.getElementById('relatedCars');
+
+        let currentCar = null;
+
+        /**
+         * Get car ID from URL query parameter
+         */
+        function getCarIdFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            return id ? parseInt(id) : null;
+        }
+
+        /**
+         * Format price with commas and dollar sign
+         */
+        function formatPrice(price) {
+            return `$${price.toLocaleString('en-US')}`;
+        }
+
+        /**
+         * Get category icon
+         */
+        function getCategoryIcon(category) {
+            const icons = {
+                sports: '🏎️',
+                suv: '🚙',
+                luxury: '💎',
+                electric: '⚡',
+                hybrid: '🔋'
+            };
+            return icons[category] || '🚗';
+        }
+
+        /**
+         * Display car details
+         */
+        function displayCarDetails(car) {
+            currentCar = car;
+
+            // Update page title
+            document.title = `${car.name} | Car Explorer`;
+
+            // Update breadcrumb
+            document.getElementById('breadcrumbName').textContent = car.name;
+
+            // Update main image
+            const carImage = document.getElementById('carImage');
+            carImage.src = car.image;
+            carImage.alt = car.name;
+
+            // Update category badge
+            const categoryBadge = document.getElementById('categoryBadge');
+            categoryBadge.textContent = `${getCategoryIcon(car.category)} ${car.category.toUpperCase()}`;
+
+            // Update title section
+            document.getElementById('carBrand').textContent = car.brand.toUpperCase();
+            document.getElementById('carName').textContent = car.name;
+            document.getElementById('carDescription').textContent = car.description;
+
+            // Update price
+            document.getElementById('carPrice').textContent = formatPrice(car.price);
+
+            // Update key specs
+            document.getElementById('carHorsepower').textContent = `${car.horsepower} HP`;
+            document.getElementById('carAcceleration').textContent = `${car.acceleration}s`;
+            document.getElementById('carTopSpeed').textContent = `${car.topSpeed} mph`;
+            document.getElementById('carYear').textContent = car.year;
+
+            // Update detailed specifications
+            document.getElementById('specBrand').textContent = car.brand;
+            document.getElementById('specYear').textContent = car.year;
+            document.getElementById('specCategory').textContent = car.category;
+            document.getElementById('specFuelType').textContent = car.fuelType;
+            document.getElementById('specTransmission').textContent = car.transmission;
+            document.getElementById('specHorsepower').textContent = `${car.horsepower} HP`;
+            document.getElementById('specAcceleration').textContent = `${car.acceleration} seconds`;
+            document.getElementById('specTopSpeed').textContent = `${car.topSpeed} mph`;
+
+            // Update favorite button state
+            updateFavoriteButton();
+
+            // Show main content, hide loading
+            loadingState.classList.add('hidden');
+            mainContent.classList.remove('hidden');
+        }
+
+        /**
+         * Update favorite button state
+         */
+        function updateFavoriteButton() {
+            if (!currentCar) return;
+
+            const isFavorite = UI.isFavorite(currentCar.id);
+            favoriteIcon.textContent = isFavorite ? '❤️' : '🤍';
+            favoriteText.textContent = isFavorite ? 'Remove from Favorites' : 'Add to Favorites';
+        }
+
+        /**
+         * Toggle favorite status
+         */
+        function toggleFavorite() {
+            if (!currentCar) return;
+
+            UI.toggleFavorite(currentCar.id);
+            updateFavoriteButton();
+
+            // Add animation
+            favoriteBtn.classList.add('scale-105');
+            setTimeout(() => favoriteBtn.classList.remove('scale-105'), 200);
+        }
+
+        /**
+         * Display related cars (same category, different car)
+         */
+        async function displayRelatedCars() {
+            if (!currentCar) return;
+
+            try {
+                const allCars = await API.fetchCars();
+                
+                // Filter cars in same category, excluding current car
+                const relatedCars = allCars
+                    .filter(car => car.category === currentCar.category && car.id !== currentCar.id)
+                    .slice(0, 3); // Show max 3 related cars
+
+                if (relatedCars.length === 0) {
+                    relatedCarsContainer.innerHTML = `
+                        <div class="col-span-full text-center py-8 transition-colors
+                                    theme-sport:text-gray-400
+                                    theme-eco:text-gray-600">
+                            No similar vehicles found
+                        </div>
+                    `;
+                    return;
+                }
+
+                UI.renderCars(relatedCars, relatedCarsContainer);
+            } catch (error) {
+                console.error('Error loading related cars:', error);
+                relatedCarsContainer.innerHTML = '';
+            }
+        }
+
+        /**
+         * Show error state
+         */
+        function showError() {
+            loadingState.classList.add('hidden');
+            mainContent.classList.add('hidden');
+            errorState.classList.remove('hidden');
+        }
+
+        /**
+         * Initialize the page
+         */
+        async function init() {
+            try {
+                // Get car ID from URL
+                const carId = getCarIdFromURL();
+
+                if (!carId) {
+                    showError();
+                    return;
+                }
+
+                // Fetch car details
+                const car = await API.getCarById(carId);
+
+                if (!car) {
+                    showError();
+                    return;
+                }
+
+                // Display car details
+                displayCarDetails(car);
+
+                // Load related cars
+                await displayRelatedCars();
+
+                // Set up favorite button listener
+                favoriteBtn.addEventListener('click', toggleFavorite);
+
+            } catch (error) {
+                console.error('Error initializing details page:', error);
+                showError();
+            }
+        }
+
+        // Initialize on page load
+        init();
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        .nav-link {
+            @apply text-sm font-medium uppercase tracking-wider transition-all duration-200 relative;
+        }
+        
+        .theme-sport .nav-link {
+            @apply text-gray-300 hover:text-white;
+        }
+        
+        .theme-eco .nav-link {
+            @apply text-gray-600 hover:text-gray-900;
+        }
+        
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
+        }
+        
+        .theme-sport .nav-link::after {
+            @apply bg-sport-primary;
+        }
+        
+        .theme-eco .nav-link::after {
+            @apply bg-eco-primary;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link--active::after {
+            @apply w-full;
+        }
+        
+        .theme-sport .nav-link--active {
+            @apply text-white;
+        }
+        
+        .theme-eco .nav-link--active {
+            @apply text-gray-900;
+        }
+    </style>
+</body>
+</html>

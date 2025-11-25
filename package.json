@@ -1,0 +1,35 @@
+{
+  "name": "car-explorer-web-app",
+  "version": "1.0.0",
+  "description": "Car Explorer Web App - SW 302 Assignment 2 - User Interface Development",
+  "main": "src/js/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npm-run-all --parallel watch:css serve",
+    "build": "npm run build:css",
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --minify",
+    "watch:css": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch",
+    "serve": "live-server --port=3000 --watch=src",
+    "preview": "live-server src/pages/index.html"
+  },
+  "keywords": [
+    "car",
+    "explorer",
+    "tailwind",
+    "porsche",
+    "ui",
+    "assignment"
+  ],
+  "author": "SW 302 Student",
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-sport">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Cars | Car Explorer</title>
+    <meta name="description" content="Browse our complete collection of luxury and performance vehicles">
+    
+    <!-- Tailwind CSS -->
+    <link href="../css/output.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased transition-colors duration-300
+             theme-sport:bg-sport-dark
+             theme-eco:bg-eco-light">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-navbar backdrop-blur-navbar transition-all duration-300
+                theme-sport:bg-black/80 theme-sport:border-b theme-sport:border-white/10
+                theme-eco:bg-white/90 theme-eco:border-b theme-eco:border-gray-200">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between h-16 lg:h-18 px-6 lg:px-12">
+                
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold tracking-tight transition-colors
+                                              theme-sport:text-white theme-eco:text-gray-900">
+                        <span class="theme-sport:text-sport-primary theme-eco:text-eco-primary">CAR</span>EXPLORER
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-8 lg:gap-12">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="browse.html" class="nav-link nav-link--active">Browse</a>
+                    <a href="compare.html" class="nav-link">Compare</a>
+                    <a href="favorites.html" class="nav-link">Favorites</a>
+                </div>
+
+                <!-- Theme Toggle -->
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle" 
+                            class="relative w-16 h-8 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 
+                                   theme-sport:bg-sport-card theme-sport:focus:ring-sport-primary
+                                   theme-eco:bg-eco-border theme-eco:focus:ring-eco-primary"
+                            aria-label="Toggle theme">
+                        <span class="absolute top-1 left-1 w-6 h-6 rounded-full transition-transform duration-300 flex items-center justify-center text-xs
+                                     theme-sport:translate-x-0 theme-sport:bg-sport-primary
+                                     theme-eco:translate-x-8 theme-eco:bg-eco-primary">
+                            <span class="theme-sport:block theme-eco:hidden">🔥</span>
+                            <span class="theme-sport:hidden theme-eco:block">🌿</span>
+                        </span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg transition-colors
+                                                       theme-sport:text-white theme-sport:hover:bg-sport-card
+                                                       theme-eco:text-gray-900 theme-eco:hover:bg-eco-hover">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden border-t transition-colors
+                                        theme-sport:border-white/10 theme-sport:bg-sport-dark
+                                        theme-eco:border-gray-200 theme-eco:bg-white">
+                <div class="px-6 py-4 space-y-3">
+                    <a href="index.html" class="block nav-link">Home</a>
+                    <a href="browse.html" class="block nav-link nav-link--active">Browse</a>
+                    <a href="compare.html" class="block nav-link">Compare</a>
+                    <a href="favorites.html" class="block nav-link">Favorites</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            
+            <!-- Page Header -->
+            <div class="mb-8 lg:mb-12">
+                <h1 class="text-4xl lg:text-5xl font-bold mb-4 transition-colors
+                           theme-sport:text-white
+                           theme-eco:text-gray-900">
+                    Browse Collection
+                </h1>
+                <p id="resultsCount" class="text-lg transition-colors
+                                           theme-sport:text-gray-400
+                                           theme-eco:text-gray-600">
+                    Loading vehicles...
+                </p>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="mb-8 rounded-lg p-6 transition-colors
+                        theme-sport:bg-sport-card
+                        theme-eco:bg-white theme-eco:border theme-eco:border-eco-border">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <!-- Search -->
+                    <div>
+                        <label for="searchInput" class="block text-sm font-medium mb-2 transition-colors
+                                                         theme-sport:text-gray-300
+                                                         theme-eco:text-gray-700">
+                            Search
+                        </label>
+                        <input type="text" 
+                               id="searchInput" 
+                               placeholder="Search cars..."
+                               class="w-full px-4 py-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2
+                                      theme-sport:bg-sport-dark theme-sport:border theme-sport:border-sport-border-subtle theme-sport:text-white theme-sport:placeholder-gray-500 theme-sport:focus:ring-sport-primary
+                                      theme-eco:bg-eco-light theme-eco:border theme-eco:border-eco-border theme-eco:text-gray-900 theme-eco:placeholder-gray-400 theme-eco:focus:ring-eco-primary">
+                    </div>
+
+                    <!-- Category -->
+                    <div>
+                        <label for="categoryFilter" class="block text-sm font-medium mb-2 transition-colors
+                                                            theme-sport:text-gray-300
+                                                            theme-eco:text-gray-700">
+                            Category
+                        </label>
+                        <select id="categoryFilter"
+                                class="w-full px-4 py-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2
+                                       theme-sport:bg-sport-dark theme-sport:border theme-sport:border-sport-border-subtle theme-sport:text-white theme-sport:focus:ring-sport-primary
+                                       theme-eco:bg-eco-light theme-eco:border theme-eco:border-eco-border theme-eco:text-gray-900 theme-eco:focus:ring-eco-primary">
+                            <option value="all">All Categories</option>
+                        </select>
+                    </div>
+
+                    <!-- Sort By -->
+                    <div>
+                        <label for="sortBy" class="block text-sm font-medium mb-2 transition-colors
+                                                    theme-sport:text-gray-300
+                                                    theme-eco:text-gray-700">
+                            Sort By
+                        </label>
+                        <select id="sortBy"
+                                class="w-full px-4 py-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2
+                                       theme-sport:bg-sport-dark theme-sport:border theme-sport:border-sport-border-subtle theme-sport:text-white theme-sport:focus:ring-sport-primary
+                                       theme-eco:bg-eco-light theme-eco:border theme-eco:border-eco-border theme-eco:text-gray-900 theme-eco:focus:ring-eco-primary">
+                            <option value="name">Name (A-Z)</option>
+                            <option value="price-asc">Price (Low to High)</option>
+                            <option value="price-desc">Price (High to Low)</option>
+                            <option value="horsepower-desc">Horsepower (High to Low)</option>
+                            <option value="horsepower-asc">Horsepower (Low to High)</option>
+                        </select>
+                    </div>
+
+                    <!-- Clear Filters -->
+                    <div class="flex items-end">
+                        <button id="clearFilters" 
+                                class="button-action button-action--secondary button-action--md w-full">
+                            Clear Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Advanced Filters (Collapsible) -->
+                <div class="mt-6 pt-6 border-t transition-colors
+                            theme-sport:border-sport-border-subtle
+                            theme-eco:border-eco-border">
+                    <button id="advancedToggle" 
+                            class="flex items-center gap-2 text-sm font-medium transition-colors
+                                   theme-sport:text-gray-300 theme-sport:hover:text-white
+                                   theme-eco:text-gray-700 theme-eco:hover:text-gray-900">
+                        <span>Advanced Filters</span>
+                        <svg class="w-4 h-4 transition-transform duration-300" id="advancedIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <div id="advancedFilters" class="hidden mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Price Range -->
+                        <div>
+                            <label class="block text-sm font-medium mb-3 transition-colors
+                                          theme-sport:text-gray-300
+                                          theme-eco:text-gray-700">
+                                Price Range: <span id="minPriceDisplay">$0</span> - <span id="maxPriceDisplay">$500,000</span>
+                            </label>
+                            <div class="space-y-3">
+                                <input type="range" 
+                                       id="minPrice" 
+                                       min="0" 
+                                       max="500000" 
+                                       step="10000" 
+                                       value="0"
+                                       class="w-full accent-sport-primary theme-eco:accent-eco-primary">
+                                <input type="range" 
+                                       id="maxPrice" 
+                                       min="0" 
+                                       max="500000" 
+                                       step="10000" 
+                                       value="500000"
+                                       class="w-full accent-sport-primary theme-eco:accent-eco-primary">
+                            </div>
+                        </div>
+
+                        <!-- Horsepower Range -->
+                        <div>
+                            <label class="block text-sm font-medium mb-3 transition-colors
+                                          theme-sport:text-gray-300
+                                          theme-eco:text-gray-700">
+                                Horsepower: <span id="minHpDisplay">0</span> - <span id="maxHpDisplay">1500</span> HP
+                            </label>
+                            <div class="space-y-3">
+                                <input type="range" 
+                                       id="minHorsepower" 
+                                       min="0" 
+                                       max="1500" 
+                                       step="50" 
+                                       value="0"
+                                       class="w-full accent-sport-primary theme-eco:accent-eco-primary">
+                                <input type="range" 
+                                       id="maxHorsepower" 
+                                       min="0" 
+                                       max="1500" 
+                                       step="50" 
+                                       value="1500"
+                                       class="w-full accent-sport-primary theme-eco:accent-eco-primary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cars Grid -->
+            <div id="carsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Cars will be rendered here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t transition-colors duration-300
+                   theme-sport:bg-black theme-sport:border-white/10
+                   theme-eco:bg-white theme-eco:border-eco-border">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <p class="text-sm transition-colors
+                          theme-sport:text-gray-400
+                          theme-eco:text-gray-600">
+                    &copy; 2025 Car Explorer. Built with passion for automotive excellence.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme Management
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const THEME_KEY = 'carExplorerTheme';
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'sport';
+            applyTheme(savedTheme);
+        }
+
+        function applyTheme(theme) {
+            html.classList.remove('theme-sport', 'theme-eco');
+            html.classList.add(`theme-${theme}`);
+            localStorage.setItem(THEME_KEY, theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = html.classList.contains('theme-sport') ? 'sport' : 'eco';
+            const newTheme = currentTheme === 'sport' ? 'eco' : 'sport';
+            applyTheme(newTheme);
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        loadTheme();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- Main App Script (Module) -->
+    <script type="module">
+        import { API } from '../js/api.js';
+        import { UI } from '../js/ui.js';
+
+        // App State
+        let allCars = [];
+        let filteredCars = [];
+
+        // DOM Elements
+        const carsContainer = document.getElementById('carsContainer');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const sortBy = document.getElementById('sortBy');
+        const clearFiltersBtn = document.getElementById('clearFilters');
+        const advancedToggle = document.getElementById('advancedToggle');
+        const advancedFilters = document.getElementById('advancedFilters');
+        const advancedIcon = document.getElementById('advancedIcon');
+        
+        // Range inputs
+        const minPrice = document.getElementById('minPrice');
+        const maxPrice = document.getElementById('maxPrice');
+        const minHorsepower = document.getElementById('minHorsepower');
+        const maxHorsepower = document.getElementById('maxHorsepower');
+        
+        // Displays
+        const minPriceDisplay = document.getElementById('minPriceDisplay');
+        const maxPriceDisplay = document.getElementById('maxPriceDisplay');
+        const minHpDisplay = document.getElementById('minHpDisplay');
+        const maxHpDisplay = document.getElementById('maxHpDisplay');
+
+        /**
+         * Initialize the app
+         */
+        async function init() {
+            try {
+                // Show loading skeletons
+                UI.renderSkeletons(carsContainer, 6);
+
+                // Fetch cars
+                allCars = await API.fetchCars();
+                filteredCars = [...allCars];
+
+                // Populate category filter
+                const categories = API.getCategories(allCars);
+                UI.populateCategories(categories, categoryFilter);
+
+                // Set up price range limits
+                const priceStats = API.getPriceStats(allCars);
+                minPrice.max = priceStats.max;
+                maxPrice.max = priceStats.max;
+                maxPrice.value = priceStats.max;
+                maxPriceDisplay.textContent = `$${UI.formatPrice(priceStats.max)}`;
+
+                // Set up horsepower range limits
+                const hpStats = API.getHorsepowerStats(allCars);
+                minHorsepower.max = hpStats.max;
+                maxHorsepower.max = hpStats.max;
+                maxHorsepower.value = hpStats.max;
+                maxHpDisplay.textContent = `${hpStats.max}`;
+
+                // Initial render
+                renderCars();
+
+                // Set up event listeners
+                setupEventListeners();
+
+            } catch (error) {
+                console.error('Error initializing app:', error);
+                UI.showError('Failed to load cars. Please try again later.');
+            }
+        }
+
+        /**
+         * Set up event listeners
+         */
+        function setupEventListeners() {
+            // Search input (debounced)
+            const debouncedSearch = UI.debounce(() => filterAndRender(), 300);
+            searchInput.addEventListener('input', debouncedSearch);
+
+            // Category filter
+            categoryFilter.addEventListener('change', filterAndRender);
+
+            // Sort
+            sortBy.addEventListener('change', filterAndRender);
+
+            // Price range
+            minPrice.addEventListener('input', (e) => {
+                UI.updateRangeDisplay(e.target, minPriceDisplay);
+                filterAndRender();
+            });
+            maxPrice.addEventListener('input', (e) => {
+                UI.updateRangeDisplay(e.target, maxPriceDisplay);
+                filterAndRender();
+            });
+
+            // Horsepower range
+            minHorsepower.addEventListener('input', (e) => {
+                minHpDisplay.textContent = e.target.value;
+                filterAndRender();
+            });
+            maxHorsepower.addEventListener('input', (e) => {
+                maxHpDisplay.textContent = e.target.value;
+                filterAndRender();
+            });
+
+            // Clear filters
+            clearFiltersBtn.addEventListener('click', clearFilters);
+
+            // Advanced filters toggle
+            advancedToggle.addEventListener('click', () => {
+                advancedFilters.classList.toggle('hidden');
+                advancedIcon.classList.toggle('rotate-180');
+            });
+        }
+
+        /**
+         * Filter and render cars
+         */
+        function filterAndRender() {
+            // Get filter values
+            const filters = {
+                search: searchInput.value,
+                category: categoryFilter.value,
+                minPrice: parseInt(minPrice.value),
+                maxPrice: parseInt(maxPrice.value),
+                minHorsepower: parseInt(minHorsepower.value),
+                maxHorsepower: parseInt(maxHorsepower.value)
+            };
+
+            // Filter cars
+            filteredCars = API.filterCars(allCars, filters);
+
+            // Sort cars
+            const [sortField, sortOrder] = sortBy.value.split('-');
+            filteredCars = API.sortCars(filteredCars, sortField, sortOrder || 'asc');
+
+            // Render
+            renderCars();
+        }
+
+        /**
+         * Render cars to the grid
+         */
+        function renderCars() {
+            UI.renderCars(filteredCars, carsContainer);
+            UI.updateResultsCount(filteredCars.length, allCars.length);
+        }
+
+        /**
+         * Clear all filters
+         */
+        function clearFilters() {
+            searchInput.value = '';
+            categoryFilter.value = 'all';
+            sortBy.value = 'name';
+            
+            const priceStats = API.getPriceStats(allCars);
+            minPrice.value = 0;
+            maxPrice.value = priceStats.max;
+            minPriceDisplay.textContent = '$0';
+            maxPriceDisplay.textContent = `$${UI.formatPrice(priceStats.max)}`;
+            
+            const hpStats = API.getHorsepowerStats(allCars);
+            minHorsepower.value = 0;
+            maxHorsepower.value = hpStats.max;
+            minHpDisplay.textContent = '0';
+            maxHpDisplay.textContent = `${hpStats.max}`;
+            
+            filterAndRender();
+        }
+
+        // Initialize app on page load
+        init();
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        .nav-link {
+            @apply text-sm font-medium uppercase tracking-wider transition-all duration-200 relative;
+        }
+        
+        .theme-sport .nav-link {
+            @apply text-gray-300 hover:text-white;
+        }
+        
+        .theme-eco .nav-link {
+            @apply text-gray-600 hover:text-gray-900;
+        }
+        
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
+        }
+        
+        .theme-sport .nav-link::after {
+            @apply bg-sport-primary;
+        }
+        
+        .theme-eco .nav-link::after {
+            @apply bg-eco-primary;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link--active::after {
+            @apply w-full;
+        }
+        
+        .theme-sport .nav-link--active {
+            @apply text-white;
+        }
+        
+        .theme-eco .nav-link--active {
+            @apply text-gray-900;
+        }
+
+        /* Custom range input styling */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .theme-sport input[type="range"] {
+            background: #2d2d2d;
+        }
+
+        .theme-eco input[type="range"] {
+            background: #e0e0e0;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</body>
+</html>

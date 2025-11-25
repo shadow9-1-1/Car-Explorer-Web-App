@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-sport">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Cars | Car Explorer</title>
+    <meta name="description" content="Side-by-side comparison of luxury and performance vehicles">
+    
+    <!-- Tailwind CSS -->
+    <link href="../css/output.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased transition-colors duration-300
+             theme-sport:bg-sport-dark
+             theme-eco:bg-eco-light">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-navbar backdrop-blur-navbar transition-all duration-300
+                theme-sport:bg-black/80 theme-sport:border-b theme-sport:border-white/10
+                theme-eco:bg-white/90 theme-eco:border-b theme-eco:border-gray-200">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between h-16 lg:h-18 px-6 lg:px-12">
+                
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold tracking-tight transition-colors
+                                              theme-sport:text-white theme-eco:text-gray-900">
+                        <span class="theme-sport:text-sport-primary theme-eco:text-eco-primary">CAR</span>EXPLORER
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-8 lg:gap-12">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="browse.html" class="nav-link">Browse</a>
+                    <a href="compare.html" class="nav-link nav-link--active">Compare</a>
+                    <a href="favorites.html" class="nav-link">Favorites</a>
+                </div>
+
+                <!-- Theme Toggle -->
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle" 
+                            class="relative w-16 h-8 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 
+                                   theme-sport:bg-sport-card theme-sport:focus:ring-sport-primary
+                                   theme-eco:bg-eco-border theme-eco:focus:ring-eco-primary"
+                            aria-label="Toggle theme">
+                        <span class="absolute top-1 left-1 w-6 h-6 rounded-full transition-transform duration-300 flex items-center justify-center text-xs
+                                     theme-sport:translate-x-0 theme-sport:bg-sport-primary
+                                     theme-eco:translate-x-8 theme-eco:bg-eco-primary">
+                            <span class="theme-sport:block theme-eco:hidden">🔥</span>
+                            <span class="theme-sport:hidden theme-eco:block">🌿</span>
+                        </span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg transition-colors
+                                                       theme-sport:text-white theme-sport:hover:bg-sport-card
+                                                       theme-eco:text-gray-900 theme-eco:hover:bg-eco-hover">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden border-t transition-colors
+                                        theme-sport:border-white/10 theme-sport:bg-sport-dark
+                                        theme-eco:border-gray-200 theme-eco:bg-white">
+                <div class="px-6 py-4 space-y-3">
+                    <a href="index.html" class="block nav-link">Home</a>
+                    <a href="browse.html" class="block nav-link">Browse</a>
+                    <a href="compare.html" class="block nav-link nav-link--active">Compare</a>
+                    <a href="favorites.html" class="block nav-link">Favorites</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            
+            <!-- Page Header -->
+            <div class="mb-8 lg:mb-12">
+                <h1 class="text-4xl lg:text-5xl font-bold mb-4 transition-colors
+                           theme-sport:text-white
+                           theme-eco:text-gray-900">
+                    Compare Vehicles
+                </h1>
+                <p id="comparisonSummary" class="text-lg transition-colors
+                                                 theme-sport:text-gray-400
+                                                 theme-eco:text-gray-600">
+                    Select cars from your favorites to compare
+                </p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden">
+                <div class="flex flex-col items-center justify-center py-20 text-center">
+                    <div class="text-6xl mb-6">📊</div>
+                    <h2 class="text-3xl font-bold mb-4 transition-colors
+                               theme-sport:text-white
+                               theme-eco:text-gray-900">
+                        No Cars to Compare
+                    </h2>
+                    <p class="text-lg mb-8 max-w-md transition-colors
+                              theme-sport:text-gray-400
+                              theme-eco:text-gray-600">
+                        Add cars to your favorites and select them to create a side-by-side comparison.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="browse.html" class="button-action button-action--primary button-action--lg">
+                            Browse Cars
+                        </a>
+                        <a href="favorites.html" class="button-action button-action--secondary button-action--lg">
+                            View Favorites
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Container -->
+            <div id="comparisonContainer" class="hidden">
+                
+                <!-- Car Images Section -->
+                <div id="carImagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <!-- Car image cards will be rendered here -->
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="space-y-8">
+                    
+                    <!-- General Information -->
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 transition-colors
+                                   theme-sport:text-white
+                                   theme-eco:text-gray-900">
+                            General Information
+                        </h2>
+                        <div id="generalSpecs" class="comparison-table"></div>
+                    </div>
+
+                    <!-- Performance -->
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 transition-colors
+                                   theme-sport:text-white
+                                   theme-eco:text-gray-900">
+                            Performance
+                        </h2>
+                        <div id="performanceSpecs" class="comparison-table"></div>
+                    </div>
+
+                    <!-- Technical Details -->
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 transition-colors
+                                   theme-sport:text-white
+                                   theme-eco:text-gray-900">
+                            Technical Specifications
+                        </h2>
+                        <div id="technicalSpecs" class="comparison-table"></div>
+                    </div>
+                </div>
+
+                <!-- Winner Badge -->
+                <div id="winnerSection" class="mt-12 p-8 rounded-lg text-center transition-colors
+                                                theme-sport:bg-sport-card theme-sport:border-2 theme-sport:border-sport-primary
+                                                theme-eco:bg-eco-highlight theme-eco:border-2 theme-eco:border-eco-primary">
+                    <div class="text-5xl mb-4">🏆</div>
+                    <h3 class="text-2xl font-bold mb-2 transition-colors
+                               theme-sport:text-white
+                               theme-eco:text-gray-900">
+                        Performance Leader
+                    </h3>
+                    <p id="winnerName" class="text-xl font-semibold mb-2 transition-colors
+                                              theme-sport:text-sport-primary
+                                              theme-eco:text-eco-primary"></p>
+                    <p id="winnerDetails" class="transition-colors
+                                                 theme-sport:text-gray-400
+                                                 theme-eco:text-gray-600"></p>
+                </div>
+
+                <!-- Actions -->
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <button id="clearComparisonBtn" 
+                            class="button-action button-action--secondary button-action--lg flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                        Clear Comparison
+                    </button>
+                    <a href="favorites.html" 
+                       class="button-action button-action--primary button-action--lg flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Add More Cars
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t transition-colors duration-300
+                   theme-sport:bg-black theme-sport:border-white/10
+                   theme-eco:bg-white theme-eco:border-eco-border">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <p class="text-sm transition-colors
+                          theme-sport:text-gray-400
+                          theme-eco:text-gray-600">
+                    &copy; 2025 Car Explorer. Built with passion for automotive excellence.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme Management
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const THEME_KEY = 'carExplorerTheme';
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'sport';
+            applyTheme(savedTheme);
+        }
+
+        function applyTheme(theme) {
+            html.classList.remove('theme-sport', 'theme-eco');
+            html.classList.add(`theme-${theme}`);
+            localStorage.setItem(THEME_KEY, theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = html.classList.contains('theme-sport') ? 'sport' : 'eco';
+            const newTheme = currentTheme === 'sport' ? 'eco' : 'sport';
+            applyTheme(newTheme);
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        loadTheme();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- Main App Script (Module) -->
+    <script type="module">
+        import { API } from '../js/api.js';
+        import { Storage } from '../js/storage.js';
+        import { Compare } from '../js/compare.js';
+
+        // DOM Elements
+        const emptyState = document.getElementById('emptyState');
+        const comparisonContainer = document.getElementById('comparisonContainer');
+        const comparisonSummary = document.getElementById('comparisonSummary');
+        const carImagesGrid = document.getElementById('carImagesGrid');
+        const generalSpecs = document.getElementById('generalSpecs');
+        const performanceSpecs = document.getElementById('performanceSpecs');
+        const technicalSpecs = document.getElementById('technicalSpecs');
+        const winnerName = document.getElementById('winnerName');
+        const winnerDetails = document.getElementById('winnerDetails');
+        const clearComparisonBtn = document.getElementById('clearComparisonBtn');
+
+        let comparisonCars = [];
+
+        /**
+         * Create car image card
+         */
+        function createCarImageCard(car) {
+            return `
+                <div class="relative group rounded-lg overflow-hidden shadow-luxury transition-all duration-300 hover:scale-105">
+                    <img src="${car.image}" 
+                         alt="${car.name}" 
+                         class="w-full aspect-[4/3] object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1283&auto=format&fit=crop'">
+                    
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end">
+                        <!-- Category Badge -->
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider backdrop-blur-sm
+                                    theme-sport:bg-sport-primary/90 theme-sport:text-white
+                                    theme-eco:bg-eco-primary/90 theme-eco:text-white">
+                            ${Compare.getCategoryIcon(car.category)} ${car.category}
+                        </div>
+
+                        <!-- Remove Button -->
+                        <button class="remove-car-btn absolute top-4 right-4 w-10 h-10 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110
+                                       theme-sport:bg-black/60 theme-sport:hover:bg-red-600
+                                       theme-eco:bg-white/60 theme-eco:hover:bg-red-600"
+                                data-car-id="${car.id}"
+                                aria-label="Remove from comparison">
+                            <span class="text-xl">✕</span>
+                        </button>
+
+                        <p class="text-sm text-gray-300 uppercase tracking-wider mb-1">${car.brand}</p>
+                        <h3 class="text-2xl font-bold text-white mb-2">${car.name}</h3>
+                        <p class="text-xl font-bold transition-colors
+                                  theme-sport:text-sport-primary
+                                  theme-eco:text-eco-primary">
+                            $${car.price.toLocaleString('en-US')}
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Create comparison table row
+         */
+        function createComparisonRow(spec, cars, highlights) {
+            const cells = cars.map(car => {
+                const value = car[spec.key];
+                const formattedValue = Compare.formatValue(value, spec.format);
+                const isWinner = Compare.isHighlighted(highlights, spec.key, car.id);
+
+                return `
+                    <div class="p-4 text-center transition-colors
+                                ${isWinner ? 'theme-sport:bg-sport-primary/20 theme-eco:bg-eco-primary/20 font-bold' : ''}
+                                theme-sport:text-white
+                                theme-eco:text-gray-900">
+                        <div class="flex items-center justify-center gap-2">
+                            ${isWinner ? '<span class="text-xl">🏆</span>' : ''}
+                            <span class="${spec.key === 'category' ? 'capitalize' : ''}">${formattedValue}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            return `
+                <div class="grid grid-cols-1 md:grid-cols-${cars.length + 1} gap-px transition-colors
+                            theme-sport:bg-sport-border-subtle
+                            theme-eco:bg-eco-border">
+                    <div class="p-4 font-medium uppercase text-sm tracking-wider transition-colors
+                                theme-sport:bg-sport-card theme-sport:text-gray-300
+                                theme-eco:bg-white theme-eco:text-gray-700">
+                        ${spec.label}
+                    </div>
+                    ${cells}
+                </div>
+            `;
+        }
+
+        /**
+         * Render comparison
+         */
+        function renderComparison(cars) {
+            comparisonCars = cars;
+
+            if (cars.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            // Get comparison data
+            const comparisonData = Compare.getComparisonData(cars);
+            const { specs, highlights } = comparisonData;
+
+            // Update summary
+            comparisonSummary.textContent = Compare.getComparisonSummary(cars);
+
+            // Render car images
+            carImagesGrid.innerHTML = cars.map(car => createCarImageCard(car)).join('');
+
+            // Render spec tables
+            generalSpecs.innerHTML = specs.general.map(spec => createComparisonRow(spec, cars, highlights)).join('');
+            performanceSpecs.innerHTML = specs.performance.map(spec => createComparisonRow(spec, cars, highlights)).join('');
+            technicalSpecs.innerHTML = specs.technical.map(spec => createComparisonRow(spec, cars, highlights)).join('');
+
+            // Show winner
+            const winner = Compare.getOverallWinner(cars);
+            winnerName.textContent = winner.winner.name;
+            winnerDetails.textContent = `Leads in: ${winner.winner.wins.join(', ') || 'Overall value'}`;
+
+            // Show comparison container
+            emptyState.classList.add('hidden');
+            comparisonContainer.classList.remove('hidden');
+
+            // Attach event listeners
+            attachRemoveListeners();
+        }
+
+        /**
+         * Show empty state
+         */
+        function showEmptyState() {
+            comparisonContainer.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+            comparisonSummary.textContent = 'Select cars from your favorites to compare';
+        }
+
+        /**
+         * Attach remove button listeners
+         */
+        function attachRemoveListeners() {
+            const removeButtons = document.querySelectorAll('.remove-car-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const carId = parseInt(button.dataset.carId);
+                    removeFromComparison(carId);
+                });
+            });
+        }
+
+        /**
+         * Remove car from comparison
+         */
+        function removeFromComparison(carId) {
+            Storage.removeFromComparison(carId);
+            loadComparison();
+        }
+
+        /**
+         * Clear all comparisons
+         */
+        function clearComparison() {
+            if (confirm('Are you sure you want to clear the comparison?')) {
+                Storage.clearComparison();
+                loadComparison();
+            }
+        }
+
+        /**
+         * Load comparison from storage
+         */
+        async function loadComparison() {
+            try {
+                // Get comparison IDs from storage
+                const comparisonIds = Storage.getComparison();
+
+                if (comparisonIds.length === 0) {
+                    showEmptyState();
+                    return;
+                }
+
+                // Fetch all cars
+                const allCars = await API.fetchCars();
+
+                // Filter to get comparison cars
+                const cars = allCars.filter(car => comparisonIds.includes(car.id));
+
+                // Render comparison
+                renderComparison(cars);
+
+            } catch (error) {
+                console.error('Error loading comparison:', error);
+                showEmptyState();
+            }
+        }
+
+        // Event Listeners
+        clearComparisonBtn.addEventListener('click', clearComparison);
+
+        // Initialize
+        loadComparison();
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        .nav-link {
+            @apply text-sm font-medium uppercase tracking-wider transition-all duration-200 relative;
+        }
+        
+        .theme-sport .nav-link {
+            @apply text-gray-300 hover:text-white;
+        }
+        
+        .theme-eco .nav-link {
+            @apply text-gray-600 hover:text-gray-900;
+        }
+        
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
+        }
+        
+        .theme-sport .nav-link::after {
+            @apply bg-sport-primary;
+        }
+        
+        .theme-eco .nav-link::after {
+            @apply bg-eco-primary;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link--active::after {
+            @apply w-full;
+        }
+        
+        .theme-sport .nav-link--active {
+            @apply text-white;
+        }
+        
+        .theme-eco .nav-link--active {
+            @apply text-gray-900;
+        }
+
+        /* Comparison table styling */
+        .comparison-table {
+            @apply rounded-lg overflow-hidden;
+        }
+
+        .theme-sport .comparison-table > div > div {
+            @apply bg-sport-card;
+        }
+
+        .theme-eco .comparison-table > div > div {
+            @apply bg-white;
+        }
+
+        /* Mobile responsive stacking */
+        @media (max-width: 767px) {
+            .comparison-table > div {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table > div > div:first-child {
+                @apply font-bold text-base;
+            }
+        }
+    </style>
+</body>
+</html>

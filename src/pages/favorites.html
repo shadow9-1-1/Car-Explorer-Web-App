@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-sport">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites | Car Explorer</title>
+    <meta name="description" content="Your saved collection of dream vehicles">
+    
+    <!-- Tailwind CSS -->
+    <link href="../css/output.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased transition-colors duration-300
+             theme-sport:bg-sport-dark
+             theme-eco:bg-eco-light">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-navbar backdrop-blur-navbar transition-all duration-300
+                theme-sport:bg-black/80 theme-sport:border-b theme-sport:border-white/10
+                theme-eco:bg-white/90 theme-eco:border-b theme-eco:border-gray-200">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between h-16 lg:h-18 px-6 lg:px-12">
+                
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold tracking-tight transition-colors
+                                              theme-sport:text-white theme-eco:text-gray-900">
+                        <span class="theme-sport:text-sport-primary theme-eco:text-eco-primary">CAR</span>EXPLORER
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-8 lg:gap-12">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="browse.html" class="nav-link">Browse</a>
+                    <a href="compare.html" class="nav-link">Compare</a>
+                    <a href="favorites.html" class="nav-link nav-link--active">Favorites</a>
+                </div>
+
+                <!-- Theme Toggle -->
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle" 
+                            class="relative w-16 h-8 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 
+                                   theme-sport:bg-sport-card theme-sport:focus:ring-sport-primary
+                                   theme-eco:bg-eco-border theme-eco:focus:ring-eco-primary"
+                            aria-label="Toggle theme">
+                        <span class="absolute top-1 left-1 w-6 h-6 rounded-full transition-transform duration-300 flex items-center justify-center text-xs
+                                     theme-sport:translate-x-0 theme-sport:bg-sport-primary
+                                     theme-eco:translate-x-8 theme-eco:bg-eco-primary">
+                            <span class="theme-sport:block theme-eco:hidden">🔥</span>
+                            <span class="theme-sport:hidden theme-eco:block">🌿</span>
+                        </span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg transition-colors
+                                                       theme-sport:text-white theme-sport:hover:bg-sport-card
+                                                       theme-eco:text-gray-900 theme-eco:hover:bg-eco-hover">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden border-t transition-colors
+                                        theme-sport:border-white/10 theme-sport:bg-sport-dark
+                                        theme-eco:border-gray-200 theme-eco:bg-white">
+                <div class="px-6 py-4 space-y-3">
+                    <a href="index.html" class="block nav-link">Home</a>
+                    <a href="browse.html" class="block nav-link">Browse</a>
+                    <a href="compare.html" class="block nav-link">Compare</a>
+                    <a href="favorites.html" class="block nav-link nav-link--active">Favorites</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 lg:mb-12 gap-4">
+                <div>
+                    <h1 class="text-4xl lg:text-5xl font-bold mb-4 transition-colors
+                               theme-sport:text-white
+                               theme-eco:text-gray-900">
+                        My Favorites
+                    </h1>
+                    <p id="favoriteCount" class="text-lg transition-colors
+                                                 theme-sport:text-gray-400
+                                                 theme-eco:text-gray-600">
+                        Loading your collection...
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div id="actionButtons" class="hidden flex flex-col sm:flex-row gap-3">
+                    <button id="compareSelectedBtn" 
+                            class="button-action button-action--primary button-action--md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            disabled>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <span id="compareButtonText">Select Cars to Compare</span>
+                    </button>
+                    <button id="clearAllBtn" 
+                            class="button-action button-action--secondary button-action--md flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Selection Bar -->
+            <div id="selectionBar" 
+                 class="hidden mb-6 p-4 rounded-lg transition-all duration-300
+                        theme-sport:bg-sport-card theme-sport:border theme-sport:border-sport-primary
+                        theme-eco:bg-eco-highlight theme-eco:border theme-eco:border-eco-primary">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center transition-colors
+                                    theme-sport:bg-sport-primary
+                                    theme-eco:bg-eco-primary">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold transition-colors
+                                      theme-sport:text-white
+                                      theme-eco:text-gray-900">
+                                <span id="selectedCount">0</span> car(s) selected for comparison
+                            </p>
+                            <p class="text-sm transition-colors
+                                      theme-sport:text-gray-400
+                                      theme-eco:text-gray-600">
+                                Select 2-3 cars to compare
+                            </p>
+                        </div>
+                    </div>
+                    <button id="clearSelectionBtn" 
+                            class="text-sm font-medium underline transition-colors
+                                   theme-sport:text-gray-300 theme-sport:hover:text-white
+                                   theme-eco:text-gray-700 theme-eco:hover:text-gray-900">
+                        Clear Selection
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cars Grid -->
+            <div id="favoritesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Loading skeletons will appear here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden">
+                <div class="flex flex-col items-center justify-center py-20 text-center">
+                    <div class="text-6xl mb-6">💔</div>
+                    <h2 class="text-3xl font-bold mb-4 transition-colors
+                               theme-sport:text-white
+                               theme-eco:text-gray-900">
+                        No Favorites Yet
+                    </h2>
+                    <p class="text-lg mb-8 max-w-md transition-colors
+                              theme-sport:text-gray-400
+                              theme-eco:text-gray-600">
+                        Start building your dream garage by adding cars to your favorites while browsing our collection.
+                    </p>
+                    <a href="browse.html" class="button-action button-action--primary button-action--lg">
+                        Browse All Cars
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t transition-colors duration-300
+                   theme-sport:bg-black theme-sport:border-white/10
+                   theme-eco:bg-white theme-eco:border-eco-border">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <p class="text-sm transition-colors
+                          theme-sport:text-gray-400
+                          theme-eco:text-gray-600">
+                    &copy; 2025 Car Explorer. Built with passion for automotive excellence.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="hidden fixed inset-0 z-modal flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div class="max-w-md w-full rounded-lg p-6 shadow-luxury transition-colors
+                    theme-sport:bg-sport-card
+                    theme-eco:bg-white">
+            <h3 class="text-2xl font-bold mb-4 transition-colors
+                       theme-sport:text-white
+                       theme-eco:text-gray-900">
+                Clear All Favorites?
+            </h3>
+            <p class="mb-6 transition-colors
+                      theme-sport:text-gray-300
+                      theme-eco:text-gray-700">
+                Are you sure you want to remove all cars from your favorites? This action cannot be undone.
+            </p>
+            <div class="flex gap-3">
+                <button id="confirmClearBtn" 
+                        class="button-action button-action--primary button-action--md flex-1">
+                    Yes, Clear All
+                </button>
+                <button id="cancelClearBtn" 
+                        class="button-action button-action--secondary button-action--md flex-1">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme Management
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const THEME_KEY = 'carExplorerTheme';
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'sport';
+            applyTheme(savedTheme);
+        }
+
+        function applyTheme(theme) {
+            html.classList.remove('theme-sport', 'theme-eco');
+            html.classList.add(`theme-${theme}`);
+            localStorage.setItem(THEME_KEY, theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = html.classList.contains('theme-sport') ? 'sport' : 'eco';
+            const newTheme = currentTheme === 'sport' ? 'eco' : 'sport';
+            applyTheme(newTheme);
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        loadTheme();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- Main App Script (Module) -->
+    <script type="module">
+        import { API } from '../js/api.js';
+        import { UI } from '../js/ui.js';
+        import { Storage } from '../js/storage.js';
+
+        // DOM Elements
+        const favoritesContainer = document.getElementById('favoritesContainer');
+        const emptyState = document.getElementById('emptyState');
+        const actionButtons = document.getElementById('actionButtons');
+        const favoriteCount = document.getElementById('favoriteCount');
+        const compareSelectedBtn = document.getElementById('compareSelectedBtn');
+        const compareButtonText = document.getElementById('compareButtonText');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const selectionBar = document.getElementById('selectionBar');
+        const selectedCount = document.getElementById('selectedCount');
+        const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+        const confirmModal = document.getElementById('confirmModal');
+        const confirmClearBtn = document.getElementById('confirmClearBtn');
+        const cancelClearBtn = document.getElementById('cancelClearBtn');
+
+        // App State
+        let favoriteCars = [];
+        let selectedForComparison = new Set();
+
+        /**
+         * Create favorite car card with selection checkbox
+         */
+        function createFavoriteCard(car) {
+            const isSelected = selectedForComparison.has(car.id);
+            
+            return `
+                <div class="car-card relative" data-car-id="${car.id}">
+                    <!-- Selection Checkbox -->
+                    <div class="absolute top-4 left-4 z-10">
+                        <input type="checkbox" 
+                               class="compare-checkbox w-6 h-6 rounded cursor-pointer transition-all
+                                      theme-sport:accent-sport-primary
+                                      theme-eco:accent-eco-primary"
+                               data-car-id="${car.id}"
+                               ${isSelected ? 'checked' : ''}
+                               aria-label="Select for comparison">
+                    </div>
+
+                    <div class="relative overflow-hidden">
+                        <img src="${car.image}" 
+                             alt="${car.name}" 
+                             class="car-card__image"
+                             loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1283&auto=format&fit=crop'">
+                        
+                        <!-- Category Badge -->
+                        <div class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider backdrop-blur-sm
+                                    theme-sport:bg-sport-primary/90 theme-sport:text-white
+                                    theme-eco:bg-eco-primary/90 theme-eco:text-white">
+                            ${UI.getCategoryIcon(car.category)} ${car.category}
+                        </div>
+
+                        <!-- Remove Button -->
+                        <button class="remove-favorite-btn absolute bottom-4 right-4 w-10 h-10 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110
+                                       theme-sport:bg-black/60 theme-sport:hover:bg-red-600
+                                       theme-eco:bg-white/60 theme-eco:hover:bg-red-600"
+                                data-car-id="${car.id}"
+                                aria-label="Remove from favorites">
+                            <span class="text-xl">🗑️</span>
+                        </button>
+                    </div>
+
+                    <div class="car-card__content">
+                        <div class="car-card__meta">
+                            ${car.brand} • ${car.year}
+                        </div>
+                        <h3 class="car-card__title">
+                            ${car.name}
+                        </h3>
+                        
+                        <!-- Specs -->
+                        <div class="flex items-center gap-4 mt-3 text-xs transition-colors
+                                    theme-sport:text-gray-400
+                                    theme-eco:text-gray-600">
+                            <span>⚡ ${car.horsepower} HP</span>
+                            <span>🚀 ${car.acceleration}s</span>
+                            <span>⏱️ ${car.topSpeed} mph</span>
+                        </div>
+
+                        <div class="car-card__price">
+                            $${UI.formatPrice(car.price)}
+                        </div>
+
+                        <div class="car-card__cta">
+                            <a href="details.html?id=${car.id}" 
+                               class="button-action button-action--primary button-action--sm w-full">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Load and render favorite cars
+         */
+        async function loadFavorites() {
+            try {
+                // Show loading skeletons
+                UI.renderSkeletons(favoritesContainer, 3);
+
+                // Get favorite IDs from localStorage
+                const favoriteIds = Storage.getFavorites();
+
+                if (favoriteIds.length === 0) {
+                    showEmptyState();
+                    return;
+                }
+
+                // Fetch all cars
+                const allCars = await API.fetchCars();
+
+                // Filter to get only favorite cars
+                favoriteCars = allCars.filter(car => favoriteIds.includes(car.id));
+
+                if (favoriteCars.length === 0) {
+                    showEmptyState();
+                    return;
+                }
+
+                // Render favorite cars
+                renderFavorites();
+
+                // Update count
+                updateFavoriteCount();
+
+                // Show action buttons
+                actionButtons.classList.remove('hidden');
+
+            } catch (error) {
+                console.error('Error loading favorites:', error);
+                UI.showError('Failed to load favorites. Please try again later.');
+            }
+        }
+
+        /**
+         * Render favorite cars
+         */
+        function renderFavorites() {
+            favoritesContainer.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            favoritesContainer.innerHTML = favoriteCars.map(car => createFavoriteCard(car)).join('');
+            attachEventListeners();
+        }
+
+        /**
+         * Show empty state
+         */
+        function showEmptyState() {
+            favoritesContainer.innerHTML = '';
+            favoritesContainer.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+            actionButtons.classList.add('hidden');
+            favoriteCount.textContent = 'Your collection is empty';
+        }
+
+        /**
+         * Update favorite count display
+         */
+        function updateFavoriteCount() {
+            const count = favoriteCars.length;
+            favoriteCount.textContent = `${count} vehicle${count !== 1 ? 's' : ''} in your collection`;
+        }
+
+        /**
+         * Attach event listeners to cards
+         */
+        function attachEventListeners() {
+            // Remove favorite buttons
+            const removeButtons = document.querySelectorAll('.remove-favorite-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const carId = parseInt(button.dataset.carId);
+                    removeFavorite(carId);
+                });
+            });
+
+            // Comparison checkboxes
+            const checkboxes = document.querySelectorAll('.compare-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const carId = parseInt(checkbox.dataset.carId);
+                    toggleSelection(carId, e.target.checked);
+                });
+            });
+        }
+
+        /**
+         * Remove car from favorites
+         */
+        function removeFavorite(carId) {
+            Storage.removeFavorite(carId);
+            
+            // Remove from selected if present
+            selectedForComparison.delete(carId);
+            
+            // Reload favorites
+            loadFavorites();
+            
+            // Update selection UI
+            updateSelectionUI();
+        }
+
+        /**
+         * Toggle car selection for comparison
+         */
+        function toggleSelection(carId, isChecked) {
+            if (isChecked) {
+                if (selectedForComparison.size >= 3) {
+                    // Max 3 cars
+                    alert('You can compare up to 3 cars at a time.');
+                    // Uncheck the checkbox
+                    const checkbox = document.querySelector(`input[data-car-id="${carId}"]`);
+                    if (checkbox) checkbox.checked = false;
+                    return;
+                }
+                selectedForComparison.add(carId);
+            } else {
+                selectedForComparison.delete(carId);
+            }
+            
+            updateSelectionUI();
+        }
+
+        /**
+         * Update selection UI elements
+         */
+        function updateSelectionUI() {
+            const count = selectedForComparison.size;
+            
+            // Update counter
+            selectedCount.textContent = count;
+            
+            // Show/hide selection bar
+            if (count > 0) {
+                selectionBar.classList.remove('hidden');
+            } else {
+                selectionBar.classList.add('hidden');
+            }
+            
+            // Update compare button
+            if (count >= 2) {
+                compareSelectedBtn.disabled = false;
+                compareButtonText.textContent = `Compare ${count} Cars`;
+            } else {
+                compareSelectedBtn.disabled = true;
+                compareButtonText.textContent = 'Select Cars to Compare';
+            }
+        }
+
+        /**
+         * Clear all favorites (with confirmation)
+         */
+        function showClearConfirmation() {
+            confirmModal.classList.remove('hidden');
+        }
+
+        function hideClearConfirmation() {
+            confirmModal.classList.add('hidden');
+        }
+
+        function clearAllFavorites() {
+            Storage.clearFavorites();
+            selectedForComparison.clear();
+            hideClearConfirmation();
+            loadFavorites();
+        }
+
+        /**
+         * Navigate to compare page with selected cars
+         */
+        function compareSelected() {
+            if (selectedForComparison.size < 2) return;
+            
+            // Save to comparison storage
+            Storage.clearComparison();
+            selectedForComparison.forEach(id => {
+                Storage.addToComparison(id);
+            });
+            
+            // Navigate to compare page
+            window.location.href = 'compare.html';
+        }
+
+        /**
+         * Clear selection
+         */
+        function clearSelection() {
+            selectedForComparison.clear();
+            
+            // Uncheck all checkboxes
+            const checkboxes = document.querySelectorAll('.compare-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            updateSelectionUI();
+        }
+
+        // Event Listeners
+        clearAllBtn.addEventListener('click', showClearConfirmation);
+        confirmClearBtn.addEventListener('click', clearAllFavorites);
+        cancelClearBtn.addEventListener('click', hideClearConfirmation);
+        compareSelectedBtn.addEventListener('click', compareSelected);
+        clearSelectionBtn.addEventListener('click', clearSelection);
+
+        // Close modal on outside click
+        confirmModal.addEventListener('click', (e) => {
+            if (e.target === confirmModal) {
+                hideClearConfirmation();
+            }
+        });
+
+        // Initialize
+        loadFavorites();
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        .nav-link {
+            @apply text-sm font-medium uppercase tracking-wider transition-all duration-200 relative;
+        }
+        
+        .theme-sport .nav-link {
+            @apply text-gray-300 hover:text-white;
+        }
+        
+        .theme-eco .nav-link {
+            @apply text-gray-600 hover:text-gray-900;
+        }
+        
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
+        }
+        
+        .theme-sport .nav-link::after {
+            @apply bg-sport-primary;
+        }
+        
+        .theme-eco .nav-link::after {
+            @apply bg-eco-primary;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link--active::after {
+            @apply w-full;
+        }
+        
+        .theme-sport .nav-link--active {
+            @apply text-white;
+        }
+        
+        .theme-eco .nav-link--active {
+            @apply text-gray-900;
+        }
+
+        /* Custom checkbox styling */
+        .compare-checkbox {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .compare-checkbox:checked {
+            transform: scale(1.1);
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,102 @@
+/**
+ * Tailwind CSS Input File
+ * Car Explorer Web App
+ * 
+ * This file imports Tailwind CSS directives and custom styles
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-sans antialiased;
+    }
+}
+
+/* Custom component styles */
+@layer components {
+    /* Navigation link styles */
+    .nav-link {
+        @apply text-sm font-medium uppercase tracking-wider transition-all duration-200 relative;
+    }
+    
+    .theme-sport .nav-link {
+        @apply text-gray-300 hover:text-white;
+    }
+    
+    .theme-eco .nav-link {
+        @apply text-gray-600 hover:text-gray-900;
+    }
+    
+    .nav-link::after {
+        content: '';
+        @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
+    }
+    
+    .theme-sport .nav-link::after {
+        @apply bg-sport-primary;
+    }
+    
+    .theme-eco .nav-link::after {
+        @apply bg-eco-primary;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link--active::after {
+        @apply w-full;
+    }
+    
+    .theme-sport .nav-link--active {
+        @apply text-white;
+    }
+    
+    .theme-eco .nav-link--active {
+        @apply text-gray-900;
+    }
+}
+
+/* Custom utilities */
+@layer utilities {
+    /* Smooth transitions */
+    .transition-theme {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Custom scrollbar for Webkit browsers */
+    .scrollbar-custom::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    .theme-sport .scrollbar-custom::-webkit-scrollbar-track {
+        @apply bg-sport-dark;
+    }
+
+    .theme-eco .scrollbar-custom::-webkit-scrollbar-track {
+        @apply bg-eco-light;
+    }
+
+    .theme-sport .scrollbar-custom::-webkit-scrollbar-thumb {
+        @apply bg-sport-primary rounded-full;
+    }
+
+    .theme-eco .scrollbar-custom::-webkit-scrollbar-thumb {
+        @apply bg-eco-primary rounded-full;
+    }
+
+    /* Text gradient */
+    .text-gradient-sport {
+        @apply bg-gradient-to-r from-sport-primary to-sport-accent bg-clip-text text-transparent;
+    }
+
+    .text-gradient-eco {
+        @apply bg-gradient-to-r from-eco-primary to-eco-accent bg-clip-text text-transparent;
+    }
+}

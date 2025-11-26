@@ -328,9 +328,7 @@
         const minHpDisplay = document.getElementById('minHpDisplay');
         const maxHpDisplay = document.getElementById('maxHpDisplay');
 
-        /**
-         * Initialize the app
-         */
+        
         async function init() {
             try {
                 // Show loading skeletons
@@ -358,6 +356,13 @@
                 maxHorsepower.value = hpStats.max;
                 maxHpDisplay.textContent = `${hpStats.max}`;
 
+                // Check URL parameters for category filter
+                const urlParams = new URLSearchParams(window.location.search);
+                const categoryParam = urlParams.get('category');
+                if (categoryParam) {
+                    categoryFilter.value = categoryParam;
+                }
+
                 // Initial render
                 renderCars();
 
@@ -370,9 +375,7 @@
             }
         }
 
-        /**
-         * Set up event listeners
-         */
+        
         function setupEventListeners() {
             // Search input (debounced)
             const debouncedSearch = UI.debounce(() => filterAndRender(), 300);
@@ -414,9 +417,7 @@
             });
         }
 
-        /**
-         * Filter and render cars
-         */
+        
         function filterAndRender() {
             // Get filter values
             const filters = {
@@ -439,17 +440,13 @@
             renderCars();
         }
 
-        /**
-         * Render cars to the grid
-         */
+        // Render cars
         function renderCars() {
             UI.renderCars(filteredCars, carsContainer);
             UI.updateResultsCount(filteredCars.length, allCars.length);
         }
 
-        /**
-         * Clear all filters
-         */
+        // Clear all filters
         function clearFilters() {
             searchInput.value = '';
             categoryFilter.value = 'all';

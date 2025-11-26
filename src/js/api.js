@@ -1,16 +1,8 @@
-/**
- * API Module - Handles data fetching and management
- * Car Explorer Web App
- */
-
 export const API = {
-    // Base path for data files
+    // data files
     dataPath: '../data/cars.json',
 
-    /**
-     * Fetch all cars from JSON file
-     * @returns {Promise<Array>} Array of car objects
-     */
+    
     async fetchCars() {
         try {
             const response = await fetch(this.dataPath);
@@ -27,11 +19,7 @@ export const API = {
         }
     },
 
-    /**
-     * Get car by ID
-     * @param {number} id - Car ID
-     * @returns {Promise<Object|null>} Car object or null
-     */
+    
     async getCarById(id) {
         try {
             const cars = await this.fetchCars();
@@ -42,16 +30,13 @@ export const API = {
         }
     },
 
-    /**
-     * Filter cars based on criteria
-     * @param {Array} cars - Array of car objects
-     * @param {Object} filters - Filter criteria
-     * @returns {Array} Filtered cars
-     */
+    
+    //Filter cars
+     
     filterCars(cars, filters = {}) {
         let filtered = [...cars];
 
-        // Search by name or brand
+        // Search
         if (filters.search && filters.search.trim() !== '') {
             const searchTerm = filters.search.toLowerCase().trim();
             filtered = filtered.filter(car => 
@@ -85,13 +70,9 @@ export const API = {
         return filtered;
     },
 
-    /**
-     * Sort cars based on criteria
-     * @param {Array} cars - Array of car objects
-     * @param {string} sortBy - Sort field (price, horsepower, name)
-     * @param {string} order - Sort order (asc, desc)
-     * @returns {Array} Sorted cars
-     */
+    
+    // Sort cars
+    
     sortCars(cars, sortBy = 'name', order = 'asc') {
         const sorted = [...cars];
 
@@ -121,21 +102,14 @@ export const API = {
         return sorted;
     },
 
-    /**
-     * Get unique categories from cars
-     * @param {Array} cars - Array of car objects
-     * @returns {Array} Array of unique categories
-     */
+    
+    // unique categor
     getCategories(cars) {
         const categories = [...new Set(cars.map(car => car.category))];
         return categories.sort();
     },
 
-    /**
-     * Get price statistics
-     * @param {Array} cars - Array of car objects
-     * @returns {Object} Price statistics
-     */
+    
     getPriceStats(cars) {
         if (!cars.length) return { min: 0, max: 0, avg: 0 };
 
@@ -147,11 +121,7 @@ export const API = {
         };
     },
 
-    /**
-     * Get horsepower statistics
-     * @param {Array} cars - Array of car objects
-     * @returns {Object} Horsepower statistics
-     */
+    
     getHorsepowerStats(cars) {
         if (!cars.length) return { min: 0, max: 0, avg: 0 };
 

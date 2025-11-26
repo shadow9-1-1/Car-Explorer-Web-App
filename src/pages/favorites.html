@@ -158,7 +158,7 @@
 
             <!-- Cars Grid -->
             <div id="favoritesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                <!-- Loading skeletons will appear here -->
+                
             </div>
 
             <!-- Empty State -->
@@ -293,9 +293,7 @@
         let favoriteCars = [];
         let selectedForComparison = new Set();
 
-        /**
-         * Create favorite car card with selection checkbox
-         */
+        
         function createFavoriteCard(car) {
             const isSelected = selectedForComparison.has(car.id);
             
@@ -368,9 +366,7 @@
             `;
         }
 
-        /**
-         * Load and render favorite cars
-         */
+        
         async function loadFavorites() {
             try {
                 // Show loading skeletons
@@ -410,9 +406,7 @@
             }
         }
 
-        /**
-         * Render favorite cars
-         */
+        
         function renderFavorites() {
             favoritesContainer.classList.remove('hidden');
             emptyState.classList.add('hidden');
@@ -420,9 +414,7 @@
             attachEventListeners();
         }
 
-        /**
-         * Show empty state
-         */
+        
         function showEmptyState() {
             favoritesContainer.innerHTML = '';
             favoritesContainer.classList.add('hidden');
@@ -431,17 +423,13 @@
             favoriteCount.textContent = 'Your collection is empty';
         }
 
-        /**
-         * Update favorite count display
-         */
+        
         function updateFavoriteCount() {
             const count = favoriteCars.length;
             favoriteCount.textContent = `${count} vehicle${count !== 1 ? 's' : ''} in your collection`;
         }
 
-        /**
-         * Attach event listeners to cards
-         */
+        
         function attachEventListeners() {
             // Remove favorite buttons
             const removeButtons = document.querySelectorAll('.remove-favorite-btn');
@@ -464,9 +452,7 @@
             });
         }
 
-        /**
-         * Remove car from favorites
-         */
+        
         function removeFavorite(carId) {
             Storage.removeFavorite(carId);
             
@@ -480,9 +466,7 @@
             updateSelectionUI();
         }
 
-        /**
-         * Toggle car selection for comparison
-         */
+        
         function toggleSelection(carId, isChecked) {
             if (isChecked) {
                 if (selectedForComparison.size >= 3) {
@@ -501,9 +485,7 @@
             updateSelectionUI();
         }
 
-        /**
-         * Update selection UI elements
-         */
+        
         function updateSelectionUI() {
             const count = selectedForComparison.size;
             
@@ -527,9 +509,6 @@
             }
         }
 
-        /**
-         * Clear all favorites (with confirmation)
-         */
         function showClearConfirmation() {
             confirmModal.classList.remove('hidden');
         }
@@ -545,9 +524,7 @@
             loadFavorites();
         }
 
-        /**
-         * Navigate to compare page with selected cars
-         */
+        
         function compareSelected() {
             if (selectedForComparison.size < 2) return;
             
@@ -561,9 +538,6 @@
             window.location.href = 'compare.html';
         }
 
-        /**
-         * Clear selection
-         */
         function clearSelection() {
             selectedForComparison.clear();
             

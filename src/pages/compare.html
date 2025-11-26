@@ -129,7 +129,7 @@
                 
                 <!-- Car Images Section -->
                 <div id="carImagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                    <!-- Car image cards will be rendered here -->
+                    
                 </div>
 
                 <!-- Comparison Table -->
@@ -282,9 +282,7 @@
 
         let comparisonCars = [];
 
-        /**
-         * Create car image card
-         */
+        // Create car image card
         function createCarImageCard(car) {
             return `
                 <div class="relative group rounded-lg overflow-hidden shadow-luxury transition-all duration-300 hover:scale-105">
@@ -323,9 +321,7 @@
             `;
         }
 
-        /**
-         * Create comparison table row
-         */
+        // Create comparison row
         function createComparisonRow(spec, cars, highlights) {
             const cells = cars.map(car => {
                 const value = car[spec.key];
@@ -359,9 +355,7 @@
             `;
         }
 
-        /**
-         * Render comparison
-         */
+        // Render comparison table
         function renderComparison(cars) {
             comparisonCars = cars;
 
@@ -398,18 +392,14 @@
             attachRemoveListeners();
         }
 
-        /**
-         * Show empty state
-         */
+        // Show empty state
         function showEmptyState() {
             comparisonContainer.classList.add('hidden');
             emptyState.classList.remove('hidden');
             comparisonSummary.textContent = 'Select cars from your favorites to compare';
         }
 
-        /**
-         * Attach remove button listeners
-         */
+        // Attach remove button listeners
         function attachRemoveListeners() {
             const removeButtons = document.querySelectorAll('.remove-car-btn');
             removeButtons.forEach(button => {
@@ -420,17 +410,13 @@
             });
         }
 
-        /**
-         * Remove car from comparison
-         */
+        // Remove car from comparison
         function removeFromComparison(carId) {
             Storage.removeFromComparison(carId);
             loadComparison();
         }
 
-        /**
-         * Clear all comparisons
-         */
+        // Clear all comparisons
         function clearComparison() {
             if (confirm('Are you sure you want to clear the comparison?')) {
                 Storage.clearComparison();
@@ -438,9 +424,7 @@
             }
         }
 
-        /**
-         * Load comparison from storage
-         */
+        // Load comparison from storage
         async function loadComparison() {
             try {
                 // Get comparison IDs from storage

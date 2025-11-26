@@ -1,14 +1,6 @@
-/**
- * UI Module - Handles rendering and DOM manipulation
- * Car Explorer Web App
- */
-
+// UI Module - Car card rendering and DOM manipulation
 export const UI = {
-    /**
-     * Create car card HTML
-     * @param {Object} car - Car object
-     * @returns {string} HTML string
-     */
+    // Render car card HTML
     createCarCard(car) {
         const isFavorite = this.isFavorite(car.id);
         const heartIcon = isFavorite ? '❤️‍🔥' : '🤍';
@@ -73,10 +65,7 @@ export const UI = {
         `;
     },
 
-    /**
-     * Create skeleton loading card
-     * @returns {string} HTML string
-     */
+    // Loading skeleton card
     createSkeletonCard() {
         return `
             <div class="car-card animate-pulse">
@@ -101,11 +90,7 @@ export const UI = {
         `;
     },
 
-    /**
-     * Render loading skeletons
-     * @param {HTMLElement} container - Container element
-     * @param {number} count - Number of skeletons
-     */
+    // Show loading skeletons
     renderSkeletons(container, count = 6) {
         container.innerHTML = '';
         for (let i = 0; i < count; i++) {
@@ -113,11 +98,7 @@ export const UI = {
         }
     },
 
-    /**
-     * Render car cards to container
-     * @param {Array} cars - Array of car objects
-     * @param {HTMLElement} container - Container element
-     */
+    // Render cars to container
     renderCars(cars, container) {
         if (!cars || cars.length === 0) {
             container.innerHTML = this.createEmptyState();
@@ -128,10 +109,7 @@ export const UI = {
         this.attachFavoriteListeners();
     },
 
-    /**
-     * Create empty state HTML
-     * @returns {string} HTML string
-     */
+    // Empty state message
     createEmptyState() {
         return `
             <div class="col-span-full flex flex-col items-center justify-center py-20 text-center">
@@ -150,11 +128,7 @@ export const UI = {
         `;
     },
 
-    /**
-     * Update results count
-     * @param {number} count - Number of results
-     * @param {number} total - Total number of cars
-     */
+    // Update results count display
     updateResultsCount(count, total) {
         const countElement = document.getElementById('resultsCount');
         if (countElement) {
@@ -162,20 +136,12 @@ export const UI = {
         }
     },
 
-    /**
-     * Format price with commas
-     * @param {number} price - Price value
-     * @returns {string} Formatted price
-     */
+    // Format price with commas
     formatPrice(price) {
         return price.toLocaleString('en-US');
     },
 
-    /**
-     * Get category icon
-     * @param {string} category - Category name
-     * @returns {string} Emoji icon
-     */
+    // Get emoji icon for category
     getCategoryIcon(category) {
         const icons = {
             sports: '🏎️',
@@ -187,10 +153,7 @@ export const UI = {
         return icons[category] || '🚗';
     },
 
-    /**
-     * Show loading state
-     * @param {boolean} isLoading - Loading state
-     */
+    // Toggle loading state
     setLoading(isLoading) {
         const loader = document.getElementById('loader');
         if (loader) {
@@ -198,10 +161,7 @@ export const UI = {
         }
     },
 
-    /**
-     * Show error message
-     * @param {string} message - Error message
-     */
+    // Display error message
     showError(message) {
         const container = document.getElementById('carsContainer');
         if (container) {
@@ -227,21 +187,12 @@ export const UI = {
         }
     },
 
-    /**
-     * Check if car is in favorites
-     * @param {number} carId - Car ID
-     * @returns {boolean} True if favorite
-     */
+    // Favorites Management
     isFavorite(carId) {
         const favorites = JSON.parse(localStorage.getItem('carExplorerFavorites') || '[]');
         return favorites.includes(carId);
     },
 
-    /**
-     * Toggle favorite status
-     * @param {number} carId - Car ID
-     * @returns {boolean} New favorite status
-     */
     toggleFavorite(carId) {
         let favorites = JSON.parse(localStorage.getItem('carExplorerFavorites') || '[]');
         const index = favorites.indexOf(carId);
@@ -256,9 +207,7 @@ export const UI = {
         return favorites.includes(carId);
     },
 
-    /**
-     * Attach favorite button listeners
-     */
+    // Event Listeners
     attachFavoriteListeners() {
         const favoriteButtons = document.querySelectorAll('.favorite-btn');
         
@@ -274,22 +223,21 @@ export const UI = {
                 const icon = button.querySelector('span');
                 icon.textContent = isFavorite ? '❤️‍🔥' : '🤍';
                 
-                // Add animation
+                // Scale animation
                 button.classList.add('scale-125');
                 setTimeout(() => button.classList.remove('scale-125'), 200);
             });
         });
 
-        // Make card clickable (excluding favorite button clicks)
+        // Card click navigation
         const cards = document.querySelectorAll('.car-card-clickable');
         cards.forEach(card => {
             card.style.cursor = 'pointer';
             card.addEventListener('click', (e) => {
-                // Don't navigate if clicking favorite button
+                // Ignore favorite button and CTA clicks
                 if (e.target.closest('.favorite-btn')) {
                     return;
                 }
-                // Don't navigate if clicking the "View Details" button
                 if (e.target.closest('.car-card__cta a')) {
                     return;
                 }
@@ -300,11 +248,7 @@ export const UI = {
         });
     },
 
-    /**
-     * Populate category dropdown
-     * @param {Array} categories - Array of categories
-     * @param {HTMLElement} select - Select element
-     */
+    // Filter Helpers
     populateCategories(categories, select) {
         select.innerHTML = '<option value="all">All Categories</option>';
         
@@ -316,22 +260,12 @@ export const UI = {
         });
     },
 
-    /**
-     * Update price range display
-     * @param {HTMLElement} input - Range input element
-     * @param {HTMLElement} display - Display element
-     */
     updateRangeDisplay(input, display) {
         const value = parseInt(input.value);
         display.textContent = `$${this.formatPrice(value)}`;
     },
 
-    /**
-     * Debounce function
-     * @param {Function} func - Function to debounce
-     * @param {number} wait - Wait time in ms
-     * @returns {Function} Debounced function
-     */
+    // Utility: Debounce function calls
     debounce(func, wait = 300) {
         let timeout;
         return function executedFunction(...args) {

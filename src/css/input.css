@@ -1,15 +1,7 @@
-/**
- * Tailwind CSS Input File
- * Car Explorer Web App
- * 
- * This file imports Tailwind CSS directives and custom styles
- */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom base styles */
 @layer base {
     html {
         scroll-behavior: smooth;
@@ -20,7 +12,6 @@
     }
 }
 
-/* Custom component styles */
 @layer components {
     /* Navigation link styles */
     .nav-link {
@@ -62,14 +53,11 @@
     }
 }
 
-/* Custom utilities */
 @layer utilities {
-    /* Smooth transitions */
     .transition-theme {
         transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
 
-    /* Custom scrollbar for Webkit browsers */
     .scrollbar-custom::-webkit-scrollbar {
         width: 8px;
         height: 8px;
@@ -91,7 +79,6 @@
         @apply bg-eco-primary rounded-full;
     }
 
-    /* Text gradient */
     .text-gradient-sport {
         @apply bg-gradient-to-r from-sport-primary to-sport-accent bg-clip-text text-transparent;
     }

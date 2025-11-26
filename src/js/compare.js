@@ -1,18 +1,9 @@
-/**
- * Compare Module - Handles car comparison logic
- * Car Explorer Web App
- */
-
+// Comparison Logic Module
 export const Compare = {
-    /**
-     * Get comparison data for multiple cars
-     * @param {Array} cars - Array of car objects to compare
-     * @returns {Object} Comparison data structure
-     */
+    
+    // Main comparison data builder
     getComparisonData(cars) {
-        if (!cars || cars.length === 0) {
-            return null;
-        }
+        if (!cars || cars.length === 0) return null;
 
         return {
             cars: cars,
@@ -21,11 +12,7 @@ export const Compare = {
         };
     },
 
-    /**
-     * Extract all specs from cars
-     * @param {Array} cars - Array of car objects
-     * @returns {Object} Organized spec categories
-     */
+    // Organize specs into categories
     extractSpecs(cars) {
         return {
             general: [
@@ -46,90 +33,55 @@ export const Compare = {
         };
     },
 
-    /**
-     * Get highlights (best values) for each spec
-     * @param {Array} cars - Array of car objects
-     * @returns {Object} Highlights by spec key
-     */
+    // Find best values for each spec
     getHighlights(cars) {
         const highlights = {};
 
-        // Horsepower - highest is best
+        // Higher is better
         const maxHp = Math.max(...cars.map(car => car.horsepower));
         highlights.horsepower = cars.filter(car => car.horsepower === maxHp).map(car => car.id);
 
-        // Acceleration - lowest is best (faster)
+        // Lower is better (faster)
         const minAccel = Math.min(...cars.map(car => car.acceleration));
         highlights.acceleration = cars.filter(car => car.acceleration === minAccel).map(car => car.id);
 
-        // Top Speed - highest is best
+        // Higher is better
         const maxSpeed = Math.max(...cars.map(car => car.topSpeed));
         highlights.topSpeed = cars.filter(car => car.topSpeed === maxSpeed).map(car => car.id);
 
-        // Price - lowest is best (value)
+        // Lower is better (value)
         const minPrice = Math.min(...cars.map(car => car.price));
         highlights.price = cars.filter(car => car.price === minPrice).map(car => car.id);
 
         return highlights;
     },
 
-    /**
-     * Format spec value based on type
-     * @param {*} value - Value to format
-     * @param {string} format - Format type
-     * @returns {string} Formatted value
-     */
+    // Format values for display
     formatValue(value, format) {
-        if (value === null || value === undefined) {
-            return 'N/A';
-        }
+        if (value === null || value === undefined) return 'N/A';
 
         switch (format) {
-            case 'currency':
-                return `$${value.toLocaleString('en-US')}`;
-            case 'hp':
-                return `${value} HP`;
-            case 'seconds':
-                return `${value}s`;
-            case 'mph':
-                return `${value} mph`;
-            default:
-                return String(value);
+            case 'currency': return `$${value.toLocaleString('en-US')}`;
+            case 'hp': return `${value} HP`;
+            case 'seconds': return `${value}s`;
+            case 'mph': return `${value} mph`;
+            default: return String(value);
         }
     },
 
-    /**
-     * Check if a spec value is highlighted for a car
-     * @param {Object} highlights - Highlights object
-     * @param {string} key - Spec key
-     * @param {number} carId - Car ID
-     * @returns {boolean} True if highlighted
-     */
+    // Check if value is winner
     isHighlighted(highlights, key, carId) {
         return highlights[key] && highlights[key].includes(carId);
     },
 
-    /**
-     * Get winner for a specific spec
-     * @param {Array} cars - Array of car objects
-     * @param {string} key - Spec key
-     * @param {string} compare - Comparison type ('higher' or 'lower')
-     * @returns {Array} Array of winning car IDs
-     */
+    // Find winner for specific spec
     getWinner(cars, key, compare) {
         const values = cars.map(car => car[key]);
-        const bestValue = compare === 'higher' 
-            ? Math.max(...values) 
-            : Math.min(...values);
-        
+        const bestValue = compare === 'higher' ? Math.max(...values) : Math.min(...values);
         return cars.filter(car => car[key] === bestValue).map(car => car.id);
     },
 
-    /**
-     * Calculate overall winner based on multiple criteria
-     * @param {Array} cars - Array of car objects
-     * @returns {Object} Winner analysis
-     */
+    // Calculate overall performance winner
     getOverallWinner(cars) {
         const scores = cars.map(car => ({
             id: car.id,
@@ -138,7 +90,7 @@ export const Compare = {
             wins: []
         }));
 
-        // Performance score (horsepower, acceleration, top speed)
+        // Performance metrics
         const maxHp = Math.max(...cars.map(car => car.horsepower));
         const minAccel = Math.min(...cars.map(car => car.acceleration));
         const maxSpeed = Math.max(...cars.map(car => car.topSpeed));
@@ -158,7 +110,6 @@ export const Compare = {
             }
         });
 
-        // Sort by score
         scores.sort((a, b) => b.score - a.score);
 
         return {
@@ -167,15 +118,9 @@ export const Compare = {
         };
     },
 
-    /**
-     * Generate comparison summary text
-     * @param {Array} cars - Array of car objects
-     * @returns {string} Summary text
-     */
+    // Generate summary text
     getComparisonSummary(cars) {
-        if (cars.length < 2) {
-            return 'Add more cars to compare';
-        }
+        if (cars.length < 2) return 'Add more cars to compare';
 
         const winner = this.getOverallWinner(cars);
         const priceRange = {
@@ -186,11 +131,7 @@ export const Compare = {
         return `Comparing ${cars.length} vehicles. ${winner.winner.name} leads with ${winner.winner.wins.length} performance advantage${winner.winner.wins.length !== 1 ? 's' : ''}. Price range: $${priceRange.min.toLocaleString()} - $${priceRange.max.toLocaleString()}.`;
     },
 
-    /**
-     * Get category icon
-     * @param {string} category - Category name
-     * @returns {string} Emoji icon
-     */
+    // Category icons
     getCategoryIcon(category) {
         const icons = {
             sports: '🏎️',

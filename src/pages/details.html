@@ -378,7 +378,7 @@
                     Similar Vehicles
                 </h2>
                 <div id="relatedCars" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Related cars will be rendered here -->
+                    
                 </div>
             </div>
         </div>
@@ -479,25 +479,18 @@
 
         let currentCar = null;
 
-        /**
-         * Get car ID from URL query parameter
-         */
+
         function getCarIdFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
             return id ? parseInt(id) : null;
         }
 
-        /**
-         * Format price with commas and dollar sign
-         */
         function formatPrice(price) {
             return `$${price.toLocaleString('en-US')}`;
         }
 
-        /**
-         * Get category icon
-         */
+
         function getCategoryIcon(category) {
             const icons = {
                 sports: '🏎️',
@@ -509,9 +502,7 @@
             return icons[category] || '🚗';
         }
 
-        /**
-         * Display car details
-         */
+
         function displayCarDetails(car) {
             currentCar = car;
 
@@ -562,9 +553,7 @@
             mainContent.classList.remove('hidden');
         }
 
-        /**
-         * Update favorite button state
-         */
+
         function updateFavoriteButton() {
             if (!currentCar) return;
 
@@ -573,9 +562,7 @@
             favoriteText.textContent = isFavorite ? 'Remove from Favorites' : 'Add to Favorites';
         }
 
-        /**
-         * Toggle favorite status
-         */
+
         function toggleFavorite() {
             if (!currentCar) return;
 
@@ -587,9 +574,7 @@
             setTimeout(() => favoriteBtn.classList.remove('scale-105'), 200);
         }
 
-        /**
-         * Display related cars (same category, different car)
-         */
+
         async function displayRelatedCars() {
             if (!currentCar) return;
 
@@ -619,18 +604,12 @@
             }
         }
 
-        /**
-         * Show error state
-         */
         function showError() {
             loadingState.classList.add('hidden');
             mainContent.classList.add('hidden');
             errorState.classList.remove('hidden');
         }
 
-        /**
-         * Initialize the page
-         */
         async function init() {
             try {
                 // Get car ID from URL

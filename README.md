@@ -95,14 +95,6 @@ Car-Explorer-Web-App/
 - **Assignment**: Assignment 2
 - **Student**: Ahmed Wael 
 
-## 📄 License
-
-This project is for educational purposes.
-
----
-
-© 2025 NurburgringGT
-
 - Semantic HTML5 elements
 - ARIA labels on interactive elements
 - Keyboard navigation support

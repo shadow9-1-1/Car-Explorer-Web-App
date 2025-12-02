@@ -1,6 +1,4 @@
-# Car Explorer Web App
-
-**Assignment 2 - SW 302 User Interface Development**
+# NurburgringGT
 
 A luxury car browsing application with dual Sport/Eco themes, built with Tailwind CSS and vanilla JavaScript.
 
@@ -89,18 +87,6 @@ Car-Explorer-Web-App/
 - **Porsche-Inspired** - Luxury minimalist aesthetics
 - **Dual Themes** - Sport & Eco modes
 
-## 📝 Assignment Details
-
-- **Course**: SW 302 - User Interface Development
-- **Assignment**: Assignment 2
-- **Student**: Ahmed Wael 
-
-- Semantic HTML5 elements
-- ARIA labels on interactive elements
-- Keyboard navigation support
-- Focus indicators
-- High contrast ratios (WCAG AA)
-- Screen reader friendly
 
 ## 📊 Car Database
 
@@ -116,19 +102,6 @@ Each car includes:
 - Complete specifications
 - Performance data
 - Pricing information
-
-## 🎓 Assignment Requirements
-
-### ✅ Completed Requirements
-- [x] 5 HTML pages
-- [x] Tailwind CSS with custom configuration
-- [x] Two distinct themes (Sport/Eco)
-- [x] Two Tailwind plugins
-- [x] JavaScript ES6+ modules
-- [x] localStorage persistence
-- [x] Responsive design
-- [x] Search & filter functionality
-- [x] Porsche-inspired aesthetics
 
 ---
 

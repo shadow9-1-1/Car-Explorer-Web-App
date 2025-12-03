@@ -2,6 +2,8 @@
 
 A luxury car browsing application with dual Sport/Eco themes, built with Tailwind CSS and vanilla JavaScript.
 
+to be continued
+
 ## 🚀 Quick Start
 
 1. **Clone the repository**
